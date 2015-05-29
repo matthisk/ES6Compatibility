@@ -1,5 +1,5 @@
 function() {
-    return Math.max(...[1, 2, 3]) === 3
+    return Math.max(...[1, 2, 3]) === 3;
 }
 
 function() {

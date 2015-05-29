@@ -61,10 +61,13 @@ function() {
     return arrow() === "quux";
 }
 
+
+/*
 function() {
     function C() {
       return x => new.target;
     }
     return new C()() === C && C()() === undefined;
 }
+*/
 

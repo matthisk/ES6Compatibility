@@ -124,7 +124,7 @@ function() {
     try {
       var B = class C {
         [C](){}
-      }
+      };
     } catch(e) {
       return true;
     }
@@ -138,12 +138,12 @@ function() {
     return !C.prototype.propertyIsEnumerable("foo") && !C.propertyIsEnumerable("bar");
 }
 
-function() {
+/*function() {
     class C {
       static method() { return this === undefined; }
     }
     return (0,C.method)();
-}
+}*/
 
 function() {
     class C {}
@@ -181,6 +181,7 @@ function() {
       && Object.getPrototypeOf(C.prototype) === null;
 }
 
+/*
 function() {
     var passed = false;
     class A {
@@ -195,4 +196,5 @@ function() {
     }());
     return passed;
 }
+*/
 
