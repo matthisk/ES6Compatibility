@@ -2,10 +2,12 @@
  * Category: annex b
  * Significance: small
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-block-level-function-declarations-web-legacy-compatibility-semantics
- *//*
+ */
+
+/*
  * Test: hoisted block-level function declaration
  */
-function hoistedblocklevelfunctiondeclaration() {
+function() {
 // Note: only available outside of strict mode.
 { function f() { return 1; } }
   function g() { return 1; }

@@ -2,10 +2,12 @@
  * Category: functions
  * Significance: large
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-class-definitions
- *//*
+ */
+
+/*
  * Test: class statement
  */
-function classstatement() {
+function() {
     class C {}
     return typeof C === "function";
 }
@@ -13,7 +15,7 @@ function classstatement() {
 /*
  * Test: is block-scoped
  */
-function isblockscoped() {
+function() {
     class C {}
     var c1 = C;
     {
@@ -26,21 +28,21 @@ function isblockscoped() {
 /*
  * Test: class expression
  */
-function classexpression() {
+function() {
     return typeof class C {} === "function";
 }
 
 /*
  * Test: anonymous class
  */
-function anonymousclass() {
+function() {
     return typeof class {} === "function";
 }
 
 /*
  * Test: constructor
  */
-function constructor() {
+function() {
     class C {
       constructor() { this.x = 1; }
     }
@@ -51,7 +53,7 @@ function constructor() {
 /*
  * Test: prototype methods
  */
-function prototypemethods() {
+function() {
     class C {
       method() { return 2; }
     }
@@ -62,7 +64,7 @@ function prototypemethods() {
 /*
  * Test: string-keyed methods
  */
-function stringkeyedmethods() {
+function() {
     class C {
       "foo bar"() { return 2; }
     }
@@ -73,7 +75,7 @@ function stringkeyedmethods() {
 /*
  * Test: computed prototype methods
  */
-function computedprototypemethods() {
+function() {
     var foo = "method";
     class C {
       [foo]() { return 2; }
@@ -85,7 +87,7 @@ function computedprototypemethods() {
 /*
  * Test: static methods
  */
-function staticmethods() {
+function() {
     class C {
       static method() { return 3; }
     }
@@ -96,7 +98,7 @@ function staticmethods() {
 /*
  * Test: computed static methods
  */
-function computedstaticmethods() {
+function() {
     var foo = "method";
     class C {
       static [foo]() { return 3; }
@@ -108,7 +110,7 @@ function computedstaticmethods() {
 /*
  * Test: accessor properties
  */
-function accessorproperties() {
+function() {
     var baz = false;
     class C {
       get foo() { return "foo"; }
@@ -121,7 +123,7 @@ function accessorproperties() {
 /*
  * Test: computed accessor properties
  */
-function computedaccessorproperties() {
+function() {
     var garply = "foo", grault = "bar", baz = false;
     class C {
       get [garply]() { return "foo"; }
@@ -134,7 +136,7 @@ function computedaccessorproperties() {
 /*
  * Test: static accessor properties
  */
-function staticaccessorproperties() {
+function() {
     var baz = false;
     class C {
       static get foo() { return "foo"; }
@@ -147,7 +149,7 @@ function staticaccessorproperties() {
 /*
  * Test: computed static accessor properties
  */
-function computedstaticaccessorproperties() {
+function() {
     var garply = "foo", grault = "bar", baz = false;
     class C {
       static get [garply]() { return "foo"; }
@@ -160,7 +162,7 @@ function computedstaticaccessorproperties() {
 /*
  * Test: class name is lexically scoped
  */
-function classnameislexicallyscoped() {
+function() {
     class C {
       method() { return typeof C === "function"; }
     }
@@ -172,7 +174,7 @@ function classnameislexicallyscoped() {
 /*
  * Test: computed names, temporal dead zone
  */
-function computednames,temporaldeadzone() {
+function() {
     try {
       var B = class C {
         [C](){}
@@ -185,7 +187,7 @@ function computednames,temporaldeadzone() {
 /*
  * Test: methods aren't enumerable
  */
-function methodsarentenumerable() {
+function() {
     class C {
       foo() {}
       static bar() {}
@@ -196,7 +198,7 @@ function methodsarentenumerable() {
 /*
  * Test: implicit strict mode
  */
-function implicitstrictmode() {
+function() {
     class C {
       static method() { return this === undefined; }
     }
@@ -206,7 +208,7 @@ function implicitstrictmode() {
 /*
  * Test: constructor requires new
  */
-function constructorrequiresnew() {
+function() {
     class C {}
     try {
       C();
@@ -219,7 +221,7 @@ function constructorrequiresnew() {
 /*
  * Test: extends
  */
-function extends() {
+function() {
     class B {}
     class C extends B {}
     return new C() instanceof B
@@ -230,7 +232,7 @@ function extends() {
 /*
  * Test: extends expressions
  */
-function extendsexpressions() {
+function() {
     var B;
     class C extends (B = class {}) {}
     return new C() instanceof B
@@ -241,7 +243,7 @@ function extendsexpressions() {
 /*
  * Test: extends null
  */
-function extendsnull() {
+function() {
     class C extends null {
       constructor() { return Object.create(null); }
     }
@@ -254,7 +256,7 @@ function extendsnull() {
 /*
  * Test: new.target
  */
-function newtarget() {
+function() {
     var passed = false;
     class A {
       constructor() {

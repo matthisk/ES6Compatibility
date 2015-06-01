@@ -2,10 +2,12 @@
  * Category: built-ins
  * Significance: large
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-typedarray-objects
- *//*
+ */
+
+/*
  * Test: Int8Array
  */
-function Int8Array() {
+function() {
     var buffer = new ArrayBuffer(64);
     var view = new Int8Array(buffer);         view[0] = 0x80;
     return view[0] === -0x80;
@@ -14,7 +16,7 @@ function Int8Array() {
 /*
  * Test: Uint8Array
  */
-function Uint8Array() {
+function() {
     var buffer = new ArrayBuffer(64);
     var view = new Uint8Array(buffer);        view[0] = 0x100;
     return view[0] === 0;
@@ -23,7 +25,7 @@ function Uint8Array() {
 /*
  * Test: Uint8ClampedArray
  */
-function Uint8ClampedArray() {
+function() {
     var buffer = new ArrayBuffer(64);
     var view = new Uint8ClampedArray(buffer); view[0] = 0x100;
     return view[0] === 0xFF;
@@ -32,7 +34,7 @@ function Uint8ClampedArray() {
 /*
  * Test: Int16Array
  */
-function Int16Array() {
+function() {
     var buffer = new ArrayBuffer(64);
     var view = new Int16Array(buffer);        view[0] = 0x8000;
     return view[0] === -0x8000;
@@ -41,7 +43,7 @@ function Int16Array() {
 /*
  * Test: Uint16Array
  */
-function Uint16Array() {
+function() {
     var buffer = new ArrayBuffer(64);
     var view = new Uint16Array(buffer);       view[0] = 0x10000;
     return view[0] === 0;
@@ -50,7 +52,7 @@ function Uint16Array() {
 /*
  * Test: Int32Array
  */
-function Int32Array() {
+function() {
     var buffer = new ArrayBuffer(64);
     var view = new Int32Array(buffer);        view[0] = 0x80000000;
     return view[0] === -0x80000000;
@@ -59,7 +61,7 @@ function Int32Array() {
 /*
  * Test: Uint32Array
  */
-function Uint32Array() {
+function() {
     var buffer = new ArrayBuffer(64);
     var view = new Uint32Array(buffer);       view[0] = 0x100000000;
     return view[0] === 0;
@@ -68,7 +70,7 @@ function Uint32Array() {
 /*
  * Test: Float32Array
  */
-function Float32Array() {
+function() {
     var buffer = new ArrayBuffer(64);
     var view = new Float32Array(buffer);       view[0] = 0.1;
     return view[0] === 0.10000000149011612;
@@ -77,7 +79,7 @@ function Float32Array() {
 /*
  * Test: Float64Array
  */
-function Float64Array() {
+function() {
     var buffer = new ArrayBuffer(64);
     var view = new Float64Array(buffer);       view[0] = 0.1;
     return view[0] === 0.1;
@@ -86,7 +88,7 @@ function Float64Array() {
 /*
  * Test: DataView (Int8)
  */
-function DataView() {
+function() {
     var buffer = new ArrayBuffer(64);
     var view = new DataView(buffer);
     view.setInt8 (0, 0x80);
@@ -96,7 +98,7 @@ function DataView() {
 /*
  * Test: DataView (Uint8)
  */
-function DataView() {
+function() {
     var buffer = new ArrayBuffer(64);
     var view = new DataView(buffer);
     view.setUint8(0, 0x100);
@@ -106,7 +108,7 @@ function DataView() {
 /*
  * Test: DataView (Int16)
  */
-function DataView() {
+function() {
     var buffer = new ArrayBuffer(64);
     var view = new DataView(buffer);
     view.setInt16(0, 0x8000);
@@ -116,7 +118,7 @@ function DataView() {
 /*
  * Test: DataView (Uint16)
  */
-function DataView() {
+function() {
     var buffer = new ArrayBuffer(64);
     var view = new DataView(buffer);
     view.setUint16(0, 0x10000);
@@ -126,7 +128,7 @@ function DataView() {
 /*
  * Test: DataView (Int32)
  */
-function DataView() {
+function() {
     var buffer = new ArrayBuffer(64);
     var view = new DataView(buffer);
     view.setInt32(0, 0x80000000);
@@ -136,7 +138,7 @@ function DataView() {
 /*
  * Test: DataView (Uint32)
  */
-function DataView() {
+function() {
     var buffer = new ArrayBuffer(64);
     var view = new DataView(buffer);
     view.setUint32(0, 0x100000000);
@@ -146,7 +148,7 @@ function DataView() {
 /*
  * Test: DataView (Float32)
  */
-function DataView() {
+function() {
     var buffer = new ArrayBuffer(64);
     var view = new DataView(buffer);
     view.setFloat32(0, 0.1);
@@ -156,7 +158,7 @@ function DataView() {
 /*
  * Test: DataView (Float64)
  */
-function DataView() {
+function() {
     var buffer = new ArrayBuffer(64);
     var view = new DataView(buffer);
     view.setFloat64(0, 0.1);
@@ -166,7 +168,7 @@ function DataView() {
 /*
  * Test: %TypedArray%.from
  */
-function %TypedArray%from() {
+function() {
 turn typeof Int8Array.from === "function" &&
 typeof Uint8Array.from === "function" &&
 typeof Uint8ClampedArray.from === "function" &&
@@ -180,7 +182,7 @@ typeof Float64Array.from === "function"}
 /*
  * Test: %TypedArray%.of
  */
-function %TypedArray%of() {
+function() {
 turn typeof Int8Array.of === "function" &&
 typeof Uint8Array.of === "function" &&
 typeof Uint8ClampedArray.of === "function" &&
@@ -194,7 +196,7 @@ typeof Float64Array.of === "function"}
 /*
  * Test: %TypedArray%.prototype.subarray
  */
-function %TypedArray%prototypesubarray() {
+function() {
 turn typeof Int8Array.prototype.subarray === "function" &&
 typeof Uint8Array.prototype.subarray === "function" &&
 typeof Uint8ClampedArray.prototype.subarray === "function" &&
@@ -208,7 +210,7 @@ typeof Float64Array.prototype.subarray === "function"}
 /*
  * Test: %TypedArray%.prototype.join
  */
-function %TypedArray%prototypejoin() {
+function() {
 turn typeof Int8Array.prototype.join === "function" &&
 typeof Uint8Array.prototype.join === "function" &&
 typeof Uint8ClampedArray.prototype.join === "function" &&
@@ -222,7 +224,7 @@ typeof Float64Array.prototype.join === "function"}
 /*
  * Test: %TypedArray%.prototype.indexOf
  */
-function %TypedArray%prototypeindexOf() {
+function() {
 turn typeof Int8Array.prototype.indexOf === "function" &&
 typeof Uint8Array.prototype.indexOf === "function" &&
 typeof Uint8ClampedArray.prototype.indexOf === "function" &&
@@ -236,7 +238,7 @@ typeof Float64Array.prototype.indexOf === "function"}
 /*
  * Test: %TypedArray%.prototype.lastIndexOf
  */
-function %TypedArray%prototypelastIndexOf() {
+function() {
 turn typeof Int8Array.prototype.lastIndexOf === "function" &&
 typeof Uint8Array.prototype.lastIndexOf === "function" &&
 typeof Uint8ClampedArray.prototype.lastIndexOf === "function" &&
@@ -250,7 +252,7 @@ typeof Float64Array.prototype.lastIndexOf === "function"}
 /*
  * Test: %TypedArray%.prototype.slice
  */
-function %TypedArray%prototypeslice() {
+function() {
 turn typeof Int8Array.prototype.slice === "function" &&
 typeof Uint8Array.prototype.slice === "function" &&
 typeof Uint8ClampedArray.prototype.slice === "function" &&
@@ -264,7 +266,7 @@ typeof Float64Array.prototype.slice === "function"}
 /*
  * Test: %TypedArray%.prototype.every
  */
-function %TypedArray%prototypeevery() {
+function() {
 turn typeof Int8Array.prototype.every === "function" &&
 typeof Uint8Array.prototype.every === "function" &&
 typeof Uint8ClampedArray.prototype.every === "function" &&
@@ -278,7 +280,7 @@ typeof Float64Array.prototype.every === "function"}
 /*
  * Test: %TypedArray%.prototype.filter
  */
-function %TypedArray%prototypefilter() {
+function() {
 turn typeof Int8Array.prototype.filter === "function" &&
 typeof Uint8Array.prototype.filter === "function" &&
 typeof Uint8ClampedArray.prototype.filter === "function" &&
@@ -292,7 +294,7 @@ typeof Float64Array.prototype.filter === "function"}
 /*
  * Test: %TypedArray%.prototype.forEach
  */
-function %TypedArray%prototypeforEach() {
+function() {
 turn typeof Int8Array.prototype.forEach === "function" &&
 typeof Uint8Array.prototype.forEach === "function" &&
 typeof Uint8ClampedArray.prototype.forEach === "function" &&
@@ -306,7 +308,7 @@ typeof Float64Array.prototype.forEach === "function"}
 /*
  * Test: %TypedArray%.prototype.map
  */
-function %TypedArray%prototypemap() {
+function() {
 turn typeof Int8Array.prototype.map === "function" &&
 typeof Uint8Array.prototype.map === "function" &&
 typeof Uint8ClampedArray.prototype.map === "function" &&
@@ -320,7 +322,7 @@ typeof Float64Array.prototype.map === "function"}
 /*
  * Test: %TypedArray%.prototype.reduce
  */
-function %TypedArray%prototypereduce() {
+function() {
 turn typeof Int8Array.prototype.reduce === "function" &&
 typeof Uint8Array.prototype.reduce === "function" &&
 typeof Uint8ClampedArray.prototype.reduce === "function" &&
@@ -334,7 +336,7 @@ typeof Float64Array.prototype.reduce === "function"}
 /*
  * Test: %TypedArray%.prototype.reduceRight
  */
-function %TypedArray%prototypereduceRight() {
+function() {
 turn typeof Int8Array.prototype.reduceRight === "function" &&
 typeof Uint8Array.prototype.reduceRight === "function" &&
 typeof Uint8ClampedArray.prototype.reduceRight === "function" &&
@@ -348,7 +350,7 @@ typeof Float64Array.prototype.reduceRight === "function"}
 /*
  * Test: %TypedArray%.prototype.reverse
  */
-function %TypedArray%prototypereverse() {
+function() {
 turn typeof Int8Array.prototype.reverse === "function" &&
 typeof Uint8Array.prototype.reverse === "function" &&
 typeof Uint8ClampedArray.prototype.reverse === "function" &&
@@ -362,7 +364,7 @@ typeof Float64Array.prototype.reverse === "function"}
 /*
  * Test: %TypedArray%.prototype.some
  */
-function %TypedArray%prototypesome() {
+function() {
 turn typeof Int8Array.prototype.some === "function" &&
 typeof Uint8Array.prototype.some === "function" &&
 typeof Uint8ClampedArray.prototype.some === "function" &&
@@ -376,7 +378,7 @@ typeof Float64Array.prototype.some === "function"}
 /*
  * Test: %TypedArray%.prototype.sort
  */
-function %TypedArray%prototypesort() {
+function() {
 turn typeof Int8Array.prototype.sort === "function" &&
 typeof Uint8Array.prototype.sort === "function" &&
 typeof Uint8ClampedArray.prototype.sort === "function" &&
@@ -390,7 +392,7 @@ typeof Float64Array.prototype.sort === "function"}
 /*
  * Test: %TypedArray%.prototype.copyWithin
  */
-function %TypedArray%prototypecopyWithin() {
+function() {
 turn typeof Int8Array.prototype.copyWithin === "function" &&
 typeof Uint8Array.prototype.copyWithin === "function" &&
 typeof Uint8ClampedArray.prototype.copyWithin === "function" &&
@@ -404,7 +406,7 @@ typeof Float64Array.prototype.copyWithin === "function"}
 /*
  * Test: %TypedArray%.prototype.find
  */
-function %TypedArray%prototypefind() {
+function() {
 turn typeof Int8Array.prototype.find === "function" &&
 typeof Uint8Array.prototype.find === "function" &&
 typeof Uint8ClampedArray.prototype.find === "function" &&
@@ -418,7 +420,7 @@ typeof Float64Array.prototype.find === "function"}
 /*
  * Test: %TypedArray%.prototype.findIndex
  */
-function %TypedArray%prototypefindIndex() {
+function() {
 turn typeof Int8Array.prototype.findIndex === "function" &&
 typeof Uint8Array.prototype.findIndex === "function" &&
 typeof Uint8ClampedArray.prototype.findIndex === "function" &&
@@ -432,7 +434,7 @@ typeof Float64Array.prototype.findIndex === "function"}
 /*
  * Test: %TypedArray%.prototype.fill
  */
-function %TypedArray%prototypefill() {
+function() {
 turn typeof Int8Array.prototype.fill === "function" &&
 typeof Uint8Array.prototype.fill === "function" &&
 typeof Uint8ClampedArray.prototype.fill === "function" &&
@@ -446,7 +448,7 @@ typeof Float64Array.prototype.fill === "function"}
 /*
  * Test: %TypedArray%.prototype.keys
  */
-function %TypedArray%prototypekeys() {
+function() {
 turn typeof Int8Array.prototype.keys === "function" &&
 typeof Uint8Array.prototype.keys === "function" &&
 typeof Uint8ClampedArray.prototype.keys === "function" &&
@@ -460,7 +462,7 @@ typeof Float64Array.prototype.keys === "function"}
 /*
  * Test: %TypedArray%.prototype.values
  */
-function %TypedArray%prototypevalues() {
+function() {
 turn typeof Int8Array.prototype.values === "function" &&
 typeof Uint8Array.prototype.values === "function" &&
 typeof Uint8ClampedArray.prototype.values === "function" &&
@@ -474,7 +476,7 @@ typeof Float64Array.prototype.values === "function"}
 /*
  * Test: %TypedArray%.prototype.entries
  */
-function %TypedArray%prototypeentries() {
+function() {
 turn typeof Int8Array.prototype.entries === "function" &&
 typeof Uint8Array.prototype.entries === "function" &&
 typeof Uint8ClampedArray.prototype.entries === "function" &&

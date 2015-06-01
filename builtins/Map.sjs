@@ -2,10 +2,12 @@
  * Category: built-ins
  * Significance: medium
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-map-objects
- *//*
+ */
+
+/*
  * Test: basic functionality
  */
-function basicfunctionality() {
+function() {
     var key = {};
     var map = new Map();
 
@@ -17,7 +19,7 @@ function basicfunctionality() {
 /*
  * Test: constructor arguments
  */
-function constructorarguments() {
+function() {
     var key1 = {};
     var key2 = {};
     var map = new Map([[key1, 123], [key2, 456]]);
@@ -29,7 +31,7 @@ function constructorarguments() {
 /*
  * Test: iterator closing
  */
-function iteratorclosing() {
+function() {
     var closed = false;
     var iter = __createIterableObject(1, 2, 3);
     iter['return'] = function(){ closed = true; return {}; }
@@ -42,7 +44,7 @@ function iteratorclosing() {
 /*
  * Test: Map.prototype.set returns this
  */
-function Mapprototypesetreturnsthis() {
+function() {
     var map = new Map();
     return map.set(0, 0) === map;
 }
@@ -50,7 +52,7 @@ function Mapprototypesetreturnsthis() {
 /*
  * Test: -0 key converts to +0
  */
-function 0keyconvertsto0() {
+function() {
     var map = new Map();
     map.set(-0, "foo");
     var k;
@@ -63,7 +65,7 @@ function 0keyconvertsto0() {
 /*
  * Test: Map.prototype.size
  */
-function Mapprototypesize() {
+function() {
     var key = {};
     var map = new Map();
 
@@ -75,42 +77,42 @@ function Mapprototypesize() {
 /*
  * Test: Map.prototype.delete
  */
-function Mapprototypedelete() {
+function() {
     return typeof Map.prototype.delete === "function";
 }
 
 /*
  * Test: Map.prototype.clear
  */
-function Mapprototypeclear() {
+function() {
     return typeof Map.prototype.clear === "function";
 }
 
 /*
  * Test: Map.prototype.forEach
  */
-function MapprototypeforEach() {
+function() {
     return typeof Map.prototype.forEach === "function";
 }
 
 /*
  * Test: Map.prototype.keys
  */
-function Mapprototypekeys() {
+function() {
     return typeof Map.prototype.keys === "function";
 }
 
 /*
  * Test: Map.prototype.values
  */
-function Mapprototypevalues() {
+function() {
     return typeof Map.prototype.values === "function";
 }
 
 /*
  * Test: Map.prototype.entries
  */
-function Mapprototypeentries() {
+function() {
     return typeof Map.prototype.entries === "function";
 }
 

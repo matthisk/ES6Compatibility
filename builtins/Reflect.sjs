@@ -2,17 +2,19 @@
  * Category: built-ins
  * Significance: medium
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-reflection
- *//*
+ */
+
+/*
  * Test: Reflect.get
  */
-function Reflectget() {
+function() {
     return Reflect.get({ qux: 987 }, "qux") === 987;
 }
 
 /*
  * Test: Reflect.set
  */
-function Reflectset() {
+function() {
     var obj = {};
     Reflect.set(obj, "quux", 654);
     return obj.quux === 654;
@@ -21,14 +23,14 @@ function Reflectset() {
 /*
  * Test: Reflect.has
  */
-function Reflecthas() {
+function() {
     return Reflect.has({ qux: 987 }, "qux");
 }
 
 /*
  * Test: Reflect.deleteProperty
  */
-function ReflectdeleteProperty() {
+function() {
     var obj = { bar: 456 };
     Reflect.deleteProperty(obj, "bar");
     return !("bar" in obj);
@@ -37,7 +39,7 @@ function ReflectdeleteProperty() {
 /*
  * Test: Reflect.getOwnPropertyDescriptor
  */
-function ReflectgetOwnPropertyDescriptor() {
+function() {
     var obj = { baz: 789 };
     var desc = Reflect.getOwnPropertyDescriptor(obj, "baz");
     return desc.value === 789 &&
@@ -47,7 +49,7 @@ function ReflectgetOwnPropertyDescriptor() {
 /*
  * Test: Reflect.defineProperty
  */
-function ReflectdefineProperty() {
+function() {
     var obj = {};
     Reflect.defineProperty(obj, "foo", { value: 123 });
     return obj.foo === 123;
@@ -56,14 +58,14 @@ function ReflectdefineProperty() {
 /*
  * Test: Reflect.getPrototypeOf
  */
-function ReflectgetPrototypeOf() {
+function() {
     return Reflect.getPrototypeOf([]) === Array.prototype;
 }
 
 /*
  * Test: Reflect.setPrototypeOf
  */
-function ReflectsetPrototypeOf() {
+function() {
     var obj = {};
     Reflect.setPrototypeOf(obj, Array.prototype);
     return obj instanceof Array;
@@ -72,7 +74,7 @@ function ReflectsetPrototypeOf() {
 /*
  * Test: Reflect.isExtensible
  */
-function ReflectisExtensible() {
+function() {
     return Reflect.isExtensible({}) &&
       !Reflect.isExtensible(Object.preventExtensions({}));
 }
@@ -80,7 +82,7 @@ function ReflectisExtensible() {
 /*
  * Test: Reflect.preventExtensions
  */
-function ReflectpreventExtensions() {
+function() {
     var obj = {};
     Reflect.preventExtensions(obj);
     return !Object.isExtensible(obj);
@@ -89,7 +91,7 @@ function ReflectpreventExtensions() {
 /*
  * Test: Reflect.enumerate
  */
-function Reflectenumerate() {
+function() {
     var obj = { foo: 1, bar: 2 };
     var iterator = Reflect.enumerate(obj);
     var passed = 1;
@@ -108,7 +110,7 @@ function Reflectenumerate() {
 /*
  * Test: Reflect.ownKeys
  */
-function ReflectownKeys() {
+function() {
     var obj = {
       2:    true,
       0:    true,
@@ -132,7 +134,7 @@ function ReflectownKeys() {
 /*
  * Test: Reflect.ownKeys, symbol order
  */
-function ReflectownKeys,symbolorder() {
+function() {
     var sym1 = Symbol(), sym2 = Symbol(), sym3 = Symbol();
     var obj = {
       1:    true,
@@ -154,14 +156,14 @@ function ReflectownKeys,symbolorder() {
 /*
  * Test: Reflect.apply
  */
-function Reflectapply() {
+function() {
     return Reflect.apply(Array.prototype.push, [1,2], [3,4,5]) === 5;
 }
 
 /*
  * Test: Reflect.construct
  */
-function Reflectconstruct() {
+function() {
     return Reflect.construct(function(a, b, c) {
       this.qux = a + b + c;
     }, ["foo", "bar", "baz"]).qux === "foobarbaz";
@@ -170,7 +172,7 @@ function Reflectconstruct() {
 /*
  * Test: Reflect.construct, new.target
  */
-function Reflectconstruct,newtarget() {
+function() {
     return Reflect.construct(function(a, b, c) {
       if (new.target === Object) {
         this.qux = a + b + c;

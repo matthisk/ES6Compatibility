@@ -2,17 +2,19 @@
  * Category: built-in extensions
  * Significance: medium
  * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-properties-of-the-array-constructor
- *//*
+ */
+
+/*
  * Test: Array.from, array-like objects
  */
-function Arrayfrom,arraylikeobjects() {
+function() {
     return Array.from({ 0: "foo", 1: "bar", length: 2 }) + '' === "foo,bar";
 }
 
 /*
  * Test: Array.from, generic iterables
  */
-function Arrayfrom,genericiterables() {
+function() {
     var iterable = global.__createIterableObject(1, 2, 3);
     return Array.from(iterable) + '' === "1,2,3";
 }
@@ -20,7 +22,7 @@ function Arrayfrom,genericiterables() {
 /*
  * Test: Array.from, instances of generic iterables
  */
-function Arrayfrom,instancesofgenericiterables() {
+function() {
     var iterable = global.__createIterableObject(1, 2, 3);
     return Array.from(Object.create(iterable)) + '' === "1,2,3";
 }
@@ -28,7 +30,7 @@ function Arrayfrom,instancesofgenericiterables() {
 /*
  * Test: Array.from map function, array-like objects
  */
-function Arrayfrommapfunction,arraylikeobjects() {
+function() {
     return Array.from({ 0: "foo", 1: "bar", length: 2 }, function(e, i) {
       return e + this.baz + i;
     }, { baz: "d" }) + '' === "food0,bard1";
@@ -37,7 +39,7 @@ function Arrayfrommapfunction,arraylikeobjects() {
 /*
  * Test: Array.from map function, generic iterables
  */
-function Arrayfrommapfunction,genericiterables() {
+function() {
     var iterable = global.__createIterableObject("foo", "bar", "bal");
     return Array.from(iterable, function(e, i) {
       return e + this.baz + i;
@@ -47,7 +49,7 @@ function Arrayfrommapfunction,genericiterables() {
 /*
  * Test: Array.from map function, instances of iterables
  */
-function Arrayfrommapfunction,instancesofiterables() {
+function() {
     var iterable = global.__createIterableObject("foo", "bar", "bal");
     return Array.from(Object.create(iterable), function(e, i) {
       return e + this.baz + i;
@@ -57,7 +59,7 @@ function Arrayfrommapfunction,instancesofiterables() {
 /*
  * Test: Array.from, iterator closing
  */
-function Arrayfrom,iteratorclosing() {
+function() {
     var closed = false;
     var iter = __createIterableObject(1, 2, 3);
     iter['return'] = function(){ closed = true; return {}; }
@@ -70,7 +72,7 @@ function Arrayfrom,iteratorclosing() {
 /*
  * Test: Array.of
  */
-function Arrayof() {
+function() {
     return typeof Array.of === 'function' &&
       Array.of(2)[0] === 2;
 }

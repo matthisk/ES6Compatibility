@@ -2,10 +2,12 @@
  * Category: syntax
  * Significance: large
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-template-literals
- *//*
+ */
+
+/*
  * Test: basic functionality
  */
-function basicfunctionality() {
+function() {
     var a = "ba", b = "QUX";
     return `foo bar
     ${a + "z"} ${b.toLowerCase()}` === "foo bar\nbaz qux";
@@ -14,7 +16,7 @@ function basicfunctionality() {
 /*
  * Test: tagged template strings
  */
-function taggedtemplatestrings() {
+function() {
     var called = false;
     function fn(parts, a, b) {
       called = true;

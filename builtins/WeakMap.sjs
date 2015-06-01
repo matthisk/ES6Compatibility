@@ -2,10 +2,12 @@
  * Category: built-ins
  * Significance: medium
  * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-weakmap-objects
- *//*
+ */
+
+/*
  * Test: basic functionality
  */
-function basicfunctionality() {
+function() {
     var key = {};
     var weakmap = new WeakMap();
 
@@ -17,7 +19,7 @@ function basicfunctionality() {
 /*
  * Test: constructor arguments
  */
-function constructorarguments() {
+function() {
     var key1 = {};
     var key2 = {};
     var weakmap = new WeakMap([[key1, 123], [key2, 456]]);
@@ -29,7 +31,7 @@ function constructorarguments() {
 /*
  * Test: iterator closing
  */
-function iteratorclosing() {
+function() {
     var closed = false;
     var iter = __createIterableObject(1, 2, 3);
     iter['return'] = function(){ closed = true; return {}; }
@@ -42,7 +44,7 @@ function iteratorclosing() {
 /*
  * Test: WeakMap.prototype.set returns this
  */
-function WeakMapprototypesetreturnsthis() {
+function() {
     var weakmap = new WeakMap();
     var key = {};
     return weakmap.set(key, 0) === weakmap;
@@ -51,14 +53,14 @@ function WeakMapprototypesetreturnsthis() {
 /*
  * Test: WeakMap.prototype.delete
  */
-function WeakMapprototypedelete() {
+function() {
     return typeof WeakMap.prototype.delete === "function";
 }
 
 /*
  * Test: Support frozen objects as keys
  */
-function Supportfrozenobjectsaskeys() {
+function() {
     var f = Object.freeze({});
     var m = new WeakMap;
     m.set(f, 42);

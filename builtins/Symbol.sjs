@@ -2,10 +2,12 @@
  * Category: built-ins
  * Significance: medium
  * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-symbol-constructor
- *//*
+ */
+
+/*
  * Test: basic functionality
  */
-function basicfunctionality() {
+function() {
     var object = {};
     var symbol = Symbol();
     var value = {};
@@ -16,14 +18,14 @@ function basicfunctionality() {
 /*
  * Test: typeof support
  */
-function typeofsupport() {
+function() {
     return typeof Symbol() === "symbol";
 }
 
 /*
  * Test: symbol keys are hidden to pre-ES6 code
  */
-function symbolkeysarehiddentopreES6code() {
+function() {
     var object = {};
     var symbol = Symbol();
     object[symbol] = 1;
@@ -42,7 +44,7 @@ function symbolkeysarehiddentopreES6code() {
 /*
  * Test: Object.defineProperty support
  */
-function ObjectdefinePropertysupport() {
+function() {
     var object = {};
     var symbol = Symbol();
     var value = {};
@@ -58,7 +60,7 @@ function ObjectdefinePropertysupport() {
 /*
  * Test: cannot coerce to string or number
  */
-function cannotcoercetostringornumber() {
+function() {
     var symbol = Symbol();
 
     try {
@@ -78,14 +80,14 @@ function cannotcoercetostringornumber() {
 /*
  * Test: can convert with String()
  */
-function canconvertwithString() {
+function() {
     return String(Symbol("foo")) === "Symbol(foo)";
 }
 
 /*
  * Test: new Symbol() throws
  */
-function newSymbolthrows() {
+function() {
     var symbol = Symbol();
     try {
       new Symbol();
@@ -97,7 +99,7 @@ function newSymbolthrows() {
 /*
  * Test: Object(symbol)
  */
-function Object() {
+function() {
     var symbol = Symbol();
     var symbolObject = Object(symbol);
 
@@ -110,7 +112,7 @@ function Object() {
 /*
  * Test: global symbol registry
  */
-function globalsymbolregistry() {
+function() {
     var symbol = Symbol.for('foo');
     return Symbol.for('foo') === symbol &&
        Symbol.keyFor(symbol) === 'foo';

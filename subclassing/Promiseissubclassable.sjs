@@ -2,10 +2,12 @@
  * Category: subclassing
  * Significance: small
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-function-constructor
- *//*
+ */
+
+/*
  * Test: basic functionality
  */
-function basicfunctionality() {
+function() {
     class P extends Promise {}
     var p1 = new P(function(resolve, reject) { resolve("foo"); });
     var p2 = new P(function(resolve, reject) { reject("quux"); });
@@ -34,7 +36,7 @@ function basicfunctionality() {
 /*
  * Test: Promise.all
  */
-function Promiseall() {
+function() {
     class P extends Promise {}
     var fulfills = P.all([
       new Promise(function(resolve)   { setTimeout(resolve,200,"foo"); }),
@@ -56,7 +58,7 @@ function Promiseall() {
 /*
  * Test: Promise.race
  */
-function Promiserace() {
+function() {
     class P extends Promise {}
     var fulfills = P.race([
       new Promise(function(resolve)   { setTimeout(resolve,200,"foo"); }),

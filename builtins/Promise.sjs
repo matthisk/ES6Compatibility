@@ -2,10 +2,12 @@
  * Category: built-ins
  * Significance: large
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-promise-objects
- *//*
+ */
+
+/*
  * Test: basic functionality
  */
-function basicfunctionality() {
+function() {
     var p1 = new Promise(function(resolve, reject) { resolve("foo"); });
     var p2 = new Promise(function(resolve, reject) { reject("quux"); });
     var score = 0;
@@ -33,7 +35,7 @@ function basicfunctionality() {
 /*
  * Test: Promise.all
  */
-function Promiseall() {
+function() {
     var fulfills = Promise.all([
       new Promise(function(resolve)   { setTimeout(resolve,200,"foo"); }),
       new Promise(function(resolve)   { setTimeout(resolve,100,"bar"); }),
@@ -54,7 +56,7 @@ function Promiseall() {
 /*
  * Test: Promise.race
  */
-function Promiserace() {
+function() {
     var fulfills = Promise.race([
       new Promise(function(resolve)   { setTimeout(resolve,200,"foo"); }),
       new Promise(function(_, reject) { setTimeout(reject, 300,"bar"); }),

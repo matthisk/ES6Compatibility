@@ -2,10 +2,12 @@
  * Category: syntax
  * Significance: medium
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-function-definitions
- *//*
+ */
+
+/*
  * Test: basic functionality
  */
-function basicfunctionality() {
+function() {
     return (function (foo, ...args) {
       return args instanceof Array && args + "" === "bar,baz";
     }("foo", "bar", "baz"));
@@ -14,14 +16,14 @@ function basicfunctionality() {
 /*
  * Test: function 'length' property
  */
-function functionlengthproperty() {
+function() {
     return function(a, ...b){}.length === 1 && function(...c){}.length === 0;
 }
 
 /*
  * Test: arguments object interaction
  */
-function argumentsobjectinteraction() {
+function() {
     return (function (foo, ...args) {
       foo = "qux";
       // The arguments object is not mapped to the
@@ -36,7 +38,7 @@ function argumentsobjectinteraction() {
 /*
  * Test: can't be used in setters
  */
-function cantbeusedinsetters() {
+function() {
     return (function (...args) {
       try {
         eval("({set e(...args){}})");
@@ -49,7 +51,7 @@ function cantbeusedinsetters() {
 /*
  * Test: new Function() support
  */
-function newFunctionsupport() {
+function() {
     return new Function("a", "...b",
       "return b instanceof Array && a+b === 'foobar,baz';"
     )('foo','bar','baz');

@@ -2,10 +2,12 @@
  * Category: functions
  * Significance: large
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generator-function-definitions
- *//*
+ */
+
+/*
  * Test: basic functionality
  */
-function basicfunctionality() {
+function() {
     function * generator(){
       yield 5; yield 6;
     };
@@ -22,7 +24,7 @@ function basicfunctionality() {
 /*
  * Test: generator function expressions
  */
-function generatorfunctionexpressions() {
+function() {
     var generator = function * (){
       yield 5; yield 6;
     };
@@ -39,7 +41,7 @@ function generatorfunctionexpressions() {
 /*
  * Test: correct "this" binding
  */
-function correctthisbinding() {
+function() {
     function * generator(){
       yield this.x; yield this.y;
     };
@@ -56,7 +58,7 @@ function correctthisbinding() {
 /*
  * Test: can't use "this" with new
  */
-function cantusethiswithnew() {
+function() {
     function * generator(){
       yield this.x; yield this.y;
     };
@@ -71,7 +73,7 @@ function cantusethiswithnew() {
 /*
  * Test: sending
  */
-function sending() {
+function() {
     var sent;
     function * generator(){
       sent = [yield 5, yield 6];
@@ -86,7 +88,7 @@ function sending() {
 /*
  * Test: %GeneratorPrototype%
  */
-function %GeneratorPrototype%() {
+function() {
     function * generatorFn(){}
     var ownProto = Object.getPrototypeOf(generatorFn());
     var passed = ownProto === generatorFn.prototype;
@@ -102,7 +104,7 @@ function %GeneratorPrototype%() {
 /*
  * Test: %GeneratorPrototype%.throw
  */
-function %GeneratorPrototype%throw() {
+function() {
     var passed = false;
     function * generator(){
       try {
@@ -120,7 +122,7 @@ function %GeneratorPrototype%throw() {
 /*
  * Test: %GeneratorPrototype%.return
  */
-function %GeneratorPrototype%return() {
+function() {
     function * generator(){
       yield 5; yield 6;
     };
@@ -137,7 +139,7 @@ function %GeneratorPrototype%return() {
 /*
  * Test: yield operator precedence
  */
-function yieldoperatorprecedence() {
+function() {
     var passed;
     function * generator(){
       passed = yield 0 ? true : false;
@@ -151,7 +153,7 @@ function yieldoperatorprecedence() {
 /*
  * Test: yield *, arrays
  */
-function yield*,arrays() {
+function() {
     var iterator = (function * generator() {
       yield * [5, 6];
     }());
@@ -167,7 +169,7 @@ function yield*,arrays() {
 /*
  * Test: yield *, strings
  */
-function yield*,strings() {
+function() {
     var iterator = (function * generator() {
       yield * "56";
     }());
@@ -183,7 +185,7 @@ function yield*,strings() {
 /*
  * Test: yield *, astral plane strings
  */
-function yield*,astralplanestrings() {
+function() {
     var iterator = (function * generator() {
       yield * "𠮷𠮶";
     }());
@@ -199,7 +201,7 @@ function yield*,astralplanestrings() {
 /*
  * Test: yield *, generic iterables
  */
-function yield*,genericiterables() {
+function() {
     var iterator = (function * generator() {
       yield * global.__createIterableObject(5, 6, 7);
     }());
@@ -217,7 +219,7 @@ function yield*,genericiterables() {
 /*
  * Test: yield *, instances of iterables
  */
-function yield*,instancesofiterables() {
+function() {
     var iterator = (function * generator() {
       yield * Object.create(__createIterableObject(5, 6, 7));
     }());
@@ -235,7 +237,7 @@ function yield*,instancesofiterables() {
 /*
  * Test: yield *, iterator closing
  */
-function yield*,iteratorclosing() {
+function() {
     var closed = '';
     var iter = __createIterableObject(1, 2, 3);
     iter['return'] = function(){
@@ -257,7 +259,7 @@ function yield*,iteratorclosing() {
 /*
  * Test: yield *, iterator closing via throw()
  */
-function yield*,iteratorclosingviathrow() {
+function() {
     var closed = false;
     var iter = __createIterableObject(1, 2, 3);
     iter['throw'] = undefined;
@@ -278,7 +280,7 @@ function yield*,iteratorclosingviathrow() {
 /*
  * Test: shorthand generator methods
  */
-function shorthandgeneratormethods() {
+function() {
     var o = {
       * generator() {
         yield 5; yield 6;
@@ -297,7 +299,7 @@ function shorthandgeneratormethods() {
 /*
  * Test: string-keyed shorthand generator methods
  */
-function stringkeyedshorthandgeneratormethods() {
+function() {
     var o = {
       * "foo bar"() {
         yield 5; yield 6;
@@ -316,7 +318,7 @@ function stringkeyedshorthandgeneratormethods() {
 /*
  * Test: computed shorthand generators
  */
-function computedshorthandgenerators() {
+function() {
     var garply = "generator";
     var o = {
       * [garply] () {
@@ -336,7 +338,7 @@ function computedshorthandgenerators() {
 /*
  * Test: shorthand generator methods, classes
  */
-function shorthandgeneratormethods,classes() {
+function() {
     class C {
       * generator() {
         yield 5; yield 6;
@@ -355,7 +357,7 @@ function shorthandgeneratormethods,classes() {
 /*
  * Test: computed shorthand generators, classes
  */
-function computedshorthandgenerators,classes() {
+function() {
     var garply = "generator";
     class C {
       * [garply] () {

@@ -2,10 +2,12 @@
  * Category: built-ins
  * Significance: large
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-proxy-object-internal-methods-and-internal-slots
- *//*
+ */
+
+/*
  * Test: "get" handler
  */
-function gethandler() {
+function() {
     var proxied = { };
     var proxy = new Proxy(proxied, {
       get: function (t, k, r) {
@@ -18,7 +20,7 @@ function gethandler() {
 /*
  * Test: "get" handler, instances of proxies
  */
-function gethandler,instancesofproxies() {
+function() {
     var proxied = { };
     var proxy = Object.create(new Proxy(proxied, {
       get: function (t, k, r) {
@@ -31,7 +33,7 @@ function gethandler,instancesofproxies() {
 /*
  * Test: "set" handler
  */
-function sethandler() {
+function() {
     var proxied = { };
     var passed = false;
     var proxy = new Proxy(proxied, {
@@ -46,7 +48,7 @@ function sethandler() {
 /*
  * Test: "set" handler, instances of proxies
  */
-function sethandler,instancesofproxies() {
+function() {
     var proxied = { };
     var passed = false;
     var proxy = Object.create(new Proxy(proxied, {
@@ -61,7 +63,7 @@ function sethandler,instancesofproxies() {
 /*
  * Test: "has" handler
  */
-function hashandler() {
+function() {
     var proxied = {};
     var passed = false;
     "foo" in new Proxy(proxied, {
@@ -75,7 +77,7 @@ function hashandler() {
 /*
  * Test: "has" handler, instances of proxies
  */
-function hashandler,instancesofproxies() {
+function() {
     var proxied = {};
     var passed = false;
     "foo" in Object.create(new Proxy(proxied, {
@@ -89,7 +91,7 @@ function hashandler,instancesofproxies() {
 /*
  * Test: "deleteProperty" handler
  */
-function deletePropertyhandler() {
+function() {
   var proxied = {};
     var passed = false;
     delete new Proxy(proxied, {
@@ -103,7 +105,7 @@ function deletePropertyhandler() {
 /*
  * Test: "getOwnPropertyDescriptor" handler
  */
-function getOwnPropertyDescriptorhandler() {
+function() {
     var proxied = {};
     var fakeDesc = { value: "foo", configurable: true };
     var returnedDesc = Object.getOwnPropertyDescriptor(
@@ -123,7 +125,7 @@ function getOwnPropertyDescriptorhandler() {
 /*
  * Test: "defineProperty" handler
  */
-function definePropertyhandler() {
+function() {
     var proxied = {};
     var passed = false;
     Object.defineProperty(
@@ -142,7 +144,7 @@ function definePropertyhandler() {
 /*
  * Test: "getPrototypeOf" handler
  */
-function getPrototypeOfhandler() {
+function() {
     var proxied = {};
     var fakeProto = {};
     var proxy = new Proxy(proxied, {
@@ -156,7 +158,7 @@ function getPrototypeOfhandler() {
 /*
  * Test: "setPrototypeOf" handler
  */
-function setPrototypeOfhandler() {
+function() {
     var proxied = {};
     var newProto = {};
     var passed = false;
@@ -175,7 +177,7 @@ function setPrototypeOfhandler() {
 /*
  * Test: "isExtensible" handler
  */
-function isExtensiblehandler() {
+function() {
     var proxied = {};
     var passed = false;
     Object.isExtensible(
@@ -191,7 +193,7 @@ function isExtensiblehandler() {
 /*
  * Test: "preventExtensions" handler
  */
-function preventExtensionshandler() {
+function() {
     var proxied = {};
     var passed = false;
     Object.preventExtensions(
@@ -208,7 +210,7 @@ function preventExtensionshandler() {
 /*
  * Test: "enumerate" handler
  */
-function enumeratehandler() {
+function() {
     var proxied = {};
     var passed = false;
     for (var i in
@@ -227,7 +229,7 @@ function enumeratehandler() {
 /*
  * Test: "ownKeys" handler
  */
-function ownKeyshandler() {
+function() {
     var proxied = {};
     var passed = false;
     Object.keys(
@@ -243,7 +245,7 @@ function ownKeyshandler() {
 /*
  * Test: "apply" handler
  */
-function applyhandler() {
+function() {
     var proxied = function(){};
     var passed = false;
     var host = {
@@ -260,7 +262,7 @@ function applyhandler() {
 /*
  * Test: "construct" handler
  */
-function constructhandler() {
+function() {
     var proxied = function(){};
     var passed = false;
     new new Proxy(proxied, {
@@ -275,7 +277,7 @@ function constructhandler() {
 /*
  * Test: Proxy.revocable
  */
-function Proxyrevocable() {
+function() {
     var obj = Proxy.revocable({}, { get: function() { return 5; } });
     var passed = (obj.proxy.foo === 5);
     obj.revoke();
@@ -290,14 +292,14 @@ function Proxyrevocable() {
 /*
  * Test: Array.isArray support
  */
-function ArrayisArraysupport() {
+function() {
     return Array.isArray(new Proxy([], {}));
 }
 
 /*
  * Test: JSON.stringify support
  */
-function JSONstringifysupport() {
+function() {
     return JSON.stringify(new Proxy(['foo'], {})) === '["foo"]';
 }
 

@@ -2,10 +2,12 @@
  * Category: annex b
  * Significance: small
  * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.prototype.__proto__
- *//*
+ */
+
+/*
  * Test: get prototype
  */
-function getprototype() {
+function() {
     var A = function(){};
     return (new A()).__proto__ === A.prototype;
 }
@@ -13,7 +15,7 @@ function getprototype() {
 /*
  * Test: set prototype
  */
-function setprototype() {
+function() {
     var o = {};
     o.__proto__ = Array.prototype;
     return o instanceof Array;
@@ -22,7 +24,7 @@ function setprototype() {
 /*
  * Test: absent from Object.create(null)
  */
-function absentfromObjectcreate() {
+function() {
     var o = Object.create(null), p = {};
     o.__proto__ = p;
     return Object.getPrototypeOf(o) !== p;
@@ -31,14 +33,14 @@ function absentfromObjectcreate() {
 /*
  * Test: present in hasOwnProperty()
  */
-function presentinhasOwnProperty() {
+function() {
     return Object.prototype.hasOwnProperty('__proto__');
 }
 
 /*
  * Test: correct property descriptor
  */
-function correctpropertydescriptor() {
+function() {
     var desc = Object.getOwnPropertyDescriptor(Object.prototype,"__proto__");
     var A = function(){};
 
@@ -52,7 +54,7 @@ function correctpropertydescriptor() {
 /*
  * Test: present in Object.getOwnPropertyNames()
  */
-function presentinObjectgetOwnPropertyNames() {
+function() {
     return Object.getOwnPropertyNames(Object.prototype).indexOf('__proto__') > -1;
 }
 

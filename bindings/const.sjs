@@ -2,10 +2,12 @@
  * Category: bindings
  * Significance: medium
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-let-and-const-declarations
- *//*
+ */
+
+/*
  * Test: basic support
  */
-function basicsupport() {
+function() {
     const foo = 123;
     return (foo === 123);
 }
@@ -13,7 +15,7 @@ function basicsupport() {
 /*
  * Test: is block-scoped
  */
-function isblockscoped() {
+function() {
     const bar = 123;
     { const bar = 456; }
     return bar === 123;
@@ -22,7 +24,7 @@ function isblockscoped() {
 /*
  * Test: redefining a const is an error
  */
-function redefiningaconstisanerror() {
+function() {
     const baz = 1;
     try {
       Function("const foo = 1; foo = 2;")();
@@ -34,7 +36,7 @@ function redefiningaconstisanerror() {
 /*
  * Test: temporal dead zone
  */
-function temporaldeadzone() {
+function() {
     var passed = (function(){ try { qux; } catch(e) { return true; }}());
     const qux = 456;
     return passed;
@@ -43,7 +45,7 @@ function temporaldeadzone() {
 /*
  * Test: basic support (strict mode)
  */
-function basicsupport() {
+function() {
     "use strict";
     const foo = 123;
     return (foo === 123);
@@ -52,7 +54,7 @@ function basicsupport() {
 /*
  * Test: is block-scoped (strict mode)
  */
-function isblockscoped() {
+function() {
     'use strict';
     const bar = 123;
     { const bar = 456; }
@@ -62,7 +64,7 @@ function isblockscoped() {
 /*
  * Test: redefining a const (strict mode)
  */
-function redefiningaconst() {
+function() {
     'use strict';
     const baz = 1;
     try {
@@ -75,7 +77,7 @@ function redefiningaconst() {
 /*
  * Test: temporal dead zone (strict mode)
  */
-function temporaldeadzone() {
+function() {
     'use strict';
     var passed = (function(){ try { qux; } catch(e) { return true; }}());
     const qux = 456;

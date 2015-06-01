@@ -2,10 +2,12 @@
  * Category: optimisation
  * Significance: medium
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-tail-position-calls
- *//*
+ */
+
+/*
  * Test: direct recursion
  */
-function directrecursion() {
+function() {
     "use strict";
     return (function f(n){
       if (n <= 0) {
@@ -18,7 +20,7 @@ function directrecursion() {
 /*
  * Test: mutual recursion
  */
-function mutualrecursion() {
+function() {
     "use strict";
     function f(n){
       if (n <= 0) {

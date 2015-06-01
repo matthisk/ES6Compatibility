@@ -2,10 +2,12 @@
  * Category: misc
  * Significance: small
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-ordinary-object-internal-methods-and-internal-slots-ownpropertykeys
- *//*
+ */
+
+/*
  * Test: for..in
  */
-function forin() {
+function() {
     var obj = {
       2:    true,
       0:    true,
@@ -33,7 +35,7 @@ function forin() {
 /*
  * Test: Object.keys
  */
-function Objectkeys() {
+function() {
     var obj = {
       2:    true,
       0:    true,
@@ -57,7 +59,7 @@ function Objectkeys() {
 /*
  * Test: Object.getOwnPropertyNames
  */
-function ObjectgetOwnPropertyNames() {
+function() {
     var obj = {
       2:    true,
       0:    true,
@@ -81,7 +83,7 @@ function ObjectgetOwnPropertyNames() {
 /*
  * Test: Object.assign
  */
-function Objectassign() {
+function() {
     function f(key) {
       return {
         get: function() { result += key; return true; },
@@ -115,7 +117,7 @@ function Objectassign() {
 /*
  * Test: JSON.stringify
  */
-function JSONstringify() {
+function() {
     var obj = {
       2:    true,
       0:    true,
@@ -140,7 +142,7 @@ function JSONstringify() {
 /*
  * Test: JSON.parse
  */
-function JSONparse() {
+function() {
     var result = '';
     JSON.parse(
       '{"0":true,"1":true,"2":true,"3":true,"4":true,"9":true," ":true,"D":true,"B":true,"-1":true,"A":true,"C":true}',
