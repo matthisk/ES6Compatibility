@@ -2,10 +2,12 @@
  * Category: syntax
  * Significance: large
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-for-in-and-for-of-statements
- *//*
+ */
+
+/*
  * Test: with arrays
  */
-function witharrays() {
+function() {
     var arr = [5];
     for (var item of arr)
       return item === 5;
@@ -14,7 +16,7 @@ function witharrays() {
 /*
  * Test: with strings
  */
-function withstrings() {
+function() {
     var str = "";
     for (var item of "foo")
       str += item;
@@ -24,7 +26,7 @@ function withstrings() {
 /*
  * Test: with astral plane strings
  */
-function withastralplanestrings() {
+function() {
     var str = "";
     for (var item of "𠮷𠮶")
       str += item + " ";
@@ -34,7 +36,7 @@ function withastralplanestrings() {
 /*
  * Test: with generic iterables
  */
-function withgenericiterables() {
+function() {
     var result = "";
     var iterable = global.__createIterableObject(1, 2, 3);
     for (var item of iterable) {
@@ -46,7 +48,7 @@ function withgenericiterables() {
 /*
  * Test: with instances of generic iterables
  */
-function withinstancesofgenericiterables() {
+function() {
     var result = "";
     var iterable = global.__createIterableObject(1, 2, 3);
     for (var item of Object.create(iterable)) {
@@ -58,7 +60,7 @@ function withinstancesofgenericiterables() {
 /*
  * Test: iterator closing, break
  */
-function iteratorclosing,break() {
+function() {
     var closed = false;
     var iter = __createIterableObject(1, 2, 3);
     iter['return'] = function(){ closed = true; return {}; }
@@ -69,7 +71,7 @@ function iteratorclosing,break() {
 /*
  * Test: iterator closing, throw
  */
-function iteratorclosing,throw() {
+function() {
     var closed = false;
     var iter = __createIterableObject(1, 2, 3);
     iter['return'] = function(){ closed = true; return {}; }

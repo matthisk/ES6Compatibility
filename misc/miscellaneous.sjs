@@ -2,10 +2,12 @@
  * Category: misc
  * Significance: small
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-additions-and-changes-that-introduce-incompatibilities-with-prior-editions
- *//*
+ */
+
+/*
  * Test: no escaped reserved words as identifiers
  */
-function noescapedreservedwordsasidentifiers() {
+function() {
     var \u0061;
     try {
       eval('var v\\u0061r');
@@ -17,7 +19,7 @@ function noescapedreservedwordsasidentifiers() {
 /*
  * Test: duplicate property names in strict mode
  */
-function duplicatepropertynamesinstrictmode() {
+function() {
     'use strict';
     return this === undefined && ({ a:1, a:1 }).a === 1;
 }
@@ -25,14 +27,14 @@ function duplicatepropertynamesinstrictmode() {
 /*
  * Test: no semicolon needed after do-while
  */
-function nosemicolonneededafterdowhile() {
+function() {
     do {} while (false) return true;
 }
 
 /*
  * Test: no assignments allowed in for-in head
  */
-function noassignmentsallowedinforinhead() {
+function() {
     try {
       eval('for (var i = 0 in {}) {}');
     }
@@ -44,7 +46,7 @@ function noassignmentsallowedinforinhead() {
 /*
  * Test: accessors aren't constructors
  */
-function accessorsarentconstructors() {
+function() {
     try {
       new (Object.getOwnPropertyDescriptor({get a(){}}, 'a')).get;
     } catch(e) {
@@ -55,21 +57,21 @@ function accessorsarentconstructors() {
 /*
  * Test: Invalid Date
  */
-function InvalidDate() {
+function() {
     return new Date(NaN) + "" === "Invalid Date";
 }
 
 /*
  * Test: RegExp constructor can alter flags
  */
-function RegExpconstructorcanalterflags() {
+function() {
     return new RegExp(/./im, "g").global === true;
 }
 
 /*
  * Test: built-in prototypes are not instances
  */
-function builtinprototypesarenotinstances() {
+function() {
     try {
       Boolean.prototype.valueOf(); return false;
     } catch(e) {}

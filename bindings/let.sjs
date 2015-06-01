@@ -2,10 +2,12 @@
  * Category: bindings
  * Significance: medium
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-let-and-const-declarations
- *//*
+ */
+
+/*
  * Test: basic support
  */
-function basicsupport() {
+function() {
     let foo = 123;
     return (foo === 123);
 }
@@ -13,7 +15,7 @@ function basicsupport() {
 /*
  * Test: is block-scoped
  */
-function isblockscoped() {
+function() {
     let bar = 123;
     { let bar = 456; }
     return bar === 123;
@@ -22,7 +24,7 @@ function isblockscoped() {
 /*
  * Test: for-loop statement scope
  */
-function forloopstatementscope() {
+function() {
     let baz = 1;
     for(let baz = 0; false; false) {}
     return baz === 1;
@@ -31,7 +33,7 @@ function forloopstatementscope() {
 /*
  * Test: temporal dead zone
  */
-function temporaldeadzone() {
+function() {
     var passed = (function(){ try {  qux; } catch(e) { return true; }}());
     let qux = 456;
     return passed;
@@ -40,7 +42,7 @@ function temporaldeadzone() {
 /*
  * Test: for-loop iteration scope
  */
-function forloopiterationscope() {
+function() {
     let scopes = [];
     for(let i = 0; i < 2; i++) {
       scopes.push(function(){ return i; });
@@ -58,7 +60,7 @@ function forloopiterationscope() {
 /*
  * Test: basic support (strict mode)
  */
-function basicsupport() {
+function() {
     'use strict';
     let foo = 123;
     return (foo === 123);
@@ -67,7 +69,7 @@ function basicsupport() {
 /*
  * Test: is block-scoped (strict mode)
  */
-function isblockscoped() {
+function() {
     'use strict';
     let bar = 123;
     { let bar = 456; }
@@ -77,7 +79,7 @@ function isblockscoped() {
 /*
  * Test: for-loop statement scope (strict mode)
  */
-function forloopstatementscope() {
+function() {
     'use strict';
     let baz = 1;
     for(let baz = 0; false; false) {}
@@ -87,7 +89,7 @@ function forloopstatementscope() {
 /*
  * Test: temporal dead zone (strict mode)
  */
-function temporaldeadzone() {
+function() {
     'use strict';
     var passed = (function(){ try {  qux; } catch(e) { return true; }}());
     let qux = 456;
@@ -97,7 +99,7 @@ function temporaldeadzone() {
 /*
  * Test: for-loop iteration scope (strict mode)
  */
-function forloopiterationscope() {
+function() {
     'use strict';
     let scopes = [];
     for(let i = 0; i < 2; i++) {

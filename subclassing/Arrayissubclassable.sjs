@@ -2,10 +2,12 @@
  * Category: subclassing
  * Significance: medium
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-array-constructor
- *//*
+ */
+
+/*
  * Test: basic functionality
  */
-function basicfunctionality() {
+function() {
     class C extends Array {}
     var c = new C();
     var len1 = c.length;
@@ -18,7 +20,7 @@ function basicfunctionality() {
 /*
  * Test: Array.prototype.slice
  */
-function Arrayprototypeslice() {
+function() {
     class C extends Array {}
     var c = new C();
     c.push(2,4,6);
@@ -28,7 +30,7 @@ function Arrayprototypeslice() {
 /*
  * Test: Array.from
  */
-function Arrayfrom() {
+function() {
     class C extends Array {}
     return C.from({ length: 0 }) instanceof C;
 }
@@ -36,7 +38,7 @@ function Arrayfrom() {
 /*
  * Test: Array.of
  */
-function Arrayof() {
+function() {
     class C extends Array {}
     return C.of(0) instanceof C;
 }

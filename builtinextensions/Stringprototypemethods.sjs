@@ -2,17 +2,19 @@
  * Category: built-in extensions
  * Significance: medium
  * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-properties-of-the-string-prototype-object
- *//*
+ */
+
+/*
  * Test: String.prototype.codePointAt
  */
-function StringprototypecodePointAt() {
+function() {
     return typeof String.prototype.codePointAt === 'function';
 }
 
 /*
  * Test: String.prototype.normalize
  */
-function Stringprototypenormalize() {
+function() {
     return typeof String.prototype.normalize === "function"
       && "c\u0327\u0301".normalize("NFC") === "\u1e09"
       && "\u1e09".normalize("NFD") === "c\u0327\u0301";
@@ -21,7 +23,7 @@ function Stringprototypenormalize() {
 /*
  * Test: String.prototype.repeat
  */
-function Stringprototyperepeat() {
+function() {
     return typeof String.prototype.repeat === 'function'
       && "foo".repeat(3) === "foofoofoo";
 }
@@ -29,7 +31,7 @@ function Stringprototyperepeat() {
 /*
  * Test: String.prototype.startsWith
  */
-function StringprototypestartsWith() {
+function() {
     return typeof String.prototype.startsWith === 'function'
       && "foobar".startsWith("foo");
 }
@@ -37,7 +39,7 @@ function StringprototypestartsWith() {
 /*
  * Test: String.prototype.endsWith
  */
-function StringprototypeendsWith() {
+function() {
     return typeof String.prototype.endsWith === 'function'
       && "foobar".endsWith("bar");
 }
@@ -45,7 +47,7 @@ function StringprototypeendsWith() {
 /*
  * Test: String.prototype.includes
  */
-function Stringprototypeincludes() {
+function() {
     return typeof String.prototype.includes === 'function'
       && "foobar".includes("oba");
 }

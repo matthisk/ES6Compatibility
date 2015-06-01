@@ -2,10 +2,12 @@
  * Category: syntax
  * Significance: large
  * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object-initialiser
- *//*
+ */
+
+/*
  * Test: computed properties
  */
-function computedproperties() {
+function() {
     var x = 'y';
     return ({ [x]: 1 }).y === 1;
 }
@@ -13,7 +15,7 @@ function computedproperties() {
 /*
  * Test: shorthand properties
  */
-function shorthandproperties() {
+function() {
     var a = 7, b = 8, c = {a,b};
     return c.a === 7 && c.b === 8;
 }
@@ -21,21 +23,21 @@ function shorthandproperties() {
 /*
  * Test: shorthand methods
  */
-function shorthandmethods() {
+function() {
     return ({ y() { return 2; } }).y() === 2;
 }
 
 /*
  * Test: string-keyed shorthand methods
  */
-function stringkeyedshorthandmethods() {
+function() {
     return ({ "foo bar"() { return 4; } })["foo bar"]() === 4;
 }
 
 /*
  * Test: computed shorthand methods
  */
-function computedshorthandmethods() {
+function() {
     var x = 'y';
     return ({ [x](){ return 1 } }).y() === 1;
 }
@@ -43,7 +45,7 @@ function computedshorthandmethods() {
 /*
  * Test: computed accessors
  */
-function computedaccessors() {
+function() {
     var x = 'y',
         valueSet,
         obj = {

@@ -2,10 +2,12 @@
  * Category: bindings
  * Significance: small
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-functiondeclarationinstantiation
- *//*
+ */
+
+/*
  * Test: block-level function declaration
  */
-function blocklevelfunctiondeclaration() {
+function() {
 'use strict';
 function f() { return 1; }
 {

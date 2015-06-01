@@ -2,10 +2,12 @@
  * Category: subclassing
  * Significance: small
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-boolean-constructor
- *//*
+ */
+
+/*
  * Test: Boolean is subclassable
  */
-function Booleanissubclassable() {
+function() {
     class C extends Boolean {}
     var c = new C(true);
     return c instanceof Boolean
@@ -15,7 +17,7 @@ function Booleanissubclassable() {
 /*
  * Test: Number is subclassable
  */
-function Numberissubclassable() {
+function() {
     class C extends Number {}
     var c = new C(6);
     return c instanceof Number
@@ -25,7 +27,7 @@ function Numberissubclassable() {
 /*
  * Test: String is subclassable
  */
-function Stringissubclassable() {
+function() {
     class C extends String {}
     var c = new C("golly");
     return c instanceof String
@@ -37,7 +39,7 @@ function Stringissubclassable() {
 /*
  * Test: Map is subclassable
  */
-function Mapissubclassable() {
+function() {
     var key = {};
     class M extends Map {}
     var map = new M();
@@ -50,7 +52,7 @@ function Mapissubclassable() {
 /*
  * Test: Set is subclassable
  */
-function Setissubclassable() {
+function() {
     var obj = {};
     class S extends Set {}
     var set = new S();

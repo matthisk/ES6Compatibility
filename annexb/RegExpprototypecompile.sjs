@@ -2,9 +2,11 @@
  * Category: annex b
  * Significance: small
  * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-regexp.prototype.compile
- *//*
+ */
+
+/*
  * Test: RegExp.prototype.compile
  */
-function RegExpprototypecompile() {
+function() {
 return typeof RegExp.prototype.compile === 'function'}
 

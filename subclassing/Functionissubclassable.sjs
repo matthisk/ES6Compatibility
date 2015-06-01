@@ -2,10 +2,12 @@
  * Category: subclassing
  * Significance: small
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-function-constructor
- *//*
+ */
+
+/*
  * Test: can be called
  */
-function canbecalled() {
+function() {
     class C extends Function {}
     var c = new C("return 'foo';");
     return c() === 'foo';
@@ -14,7 +16,7 @@ function canbecalled() {
 /*
  * Test: can be used with "new"
  */
-function canbeusedwithnew() {
+function() {
     class C extends Function {}
     var c = new C("this.bar = 2;");
     c.prototype.baz = 3;
@@ -24,7 +26,7 @@ function canbeusedwithnew() {
 /*
  * Test: Function.prototype.call
  */
-function Functionprototypecall() {
+function() {
     class C extends Function {}
     var c = new C("x", "return this.bar + x;");
     return c.call({bar:1}, 2) === 3;
@@ -33,7 +35,7 @@ function Functionprototypecall() {
 /*
  * Test: Function.prototype.apply
  */
-function Functionprototypeapply() {
+function() {
     class C extends Function {}
     var c = new C("x", "return this.bar + x;");
     return c.apply({bar:1}, [2]) === 3;
@@ -42,7 +44,7 @@ function Functionprototypeapply() {
 /*
  * Test: Function.prototype.bind
  */
-function Functionprototypebind() {
+function() {
     class C extends Function {}
     var c = new C("x", "y", "return this.bar + x + y;").bind({bar:1}, 2);
     return c(6) === 9 && c instanceof C;

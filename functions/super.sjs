@@ -2,10 +2,12 @@
  * Category: functions
  * Significance: medium
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-super-keyword
- *//*
+ */
+
+/*
  * Test: statement in constructors
  */
-function statementinconstructors() {
+function() {
     var passed = false;
     class B {
       constructor(a) { passed = (a === "barbaz"); }
@@ -20,7 +22,7 @@ function statementinconstructors() {
 /*
  * Test: expression in constructors
  */
-function expressioninconstructors() {
+function() {
     class B {
       constructor(a) { return ["foo" + a]; }
     }
@@ -33,7 +35,7 @@ function expressioninconstructors() {
 /*
  * Test: in methods, property access
  */
-function inmethods,propertyaccess() {
+function() {
     class B {}
     B.prototype.qux = "foo";
     B.prototype.corge = "baz";
@@ -47,7 +49,7 @@ function inmethods,propertyaccess() {
 /*
  * Test: in methods, method calls
  */
-function inmethods,methodcalls() {
+function() {
     class B {
       qux(a) { return "foo" + a; }
     }
@@ -60,7 +62,7 @@ function inmethods,methodcalls() {
 /*
  * Test: method calls use correct "this" binding
  */
-function methodcallsusecorrectthisbinding() {
+function() {
     class B {
       qux(a) { return this.foo + a; }
     }
@@ -75,7 +77,7 @@ function methodcallsusecorrectthisbinding() {
 /*
  * Test: is statically bound
  */
-function isstaticallybound() {
+function() {
     class B {
       qux() { return "bar"; }
     }

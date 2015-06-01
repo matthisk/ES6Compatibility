@@ -2,10 +2,12 @@
  * Category: annex b
  * Significance: small
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.anchor
- *//*
+ */
+
+/*
  * Test: existence
  */
-function existence() {
+function() {
     var i, names = ["anchor", "big", "bold", "fixed", "fontcolor", "fontsize",
       "italics", "link", "small", "strike", "sub", "sup"];
     for (i = 0; i < names.length; i++) {
@@ -19,7 +21,7 @@ function existence() {
 /*
  * Test: tags' names are lowercase
  */
-function tagsnamesarelowercase() {
+function() {
     var i, names = ["anchor", "big", "bold", "fixed", "fontcolor", "fontsize",
       "italics", "link", "small", "strike", "sub", "sup"];
     for (i = 0; i < names.length; i++) {
@@ -33,7 +35,7 @@ function tagsnamesarelowercase() {
 /*
  * Test: quotes in arguments are escaped
  */
-function quotesinargumentsareescaped() {
+function() {
     var i, names = ["anchor", "fontcolor", "fontsize", "link"];
     for (i = 0; i < names.length; i++) {
       if (""[names[i]]('"') !== ""[names[i]]('&' + 'quot;')) {

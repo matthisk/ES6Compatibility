@@ -2,10 +2,12 @@
  * Category: built-ins
  * Significance: medium
  * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-well-known-symbols
- *//*
+ */
+
+/*
  * Test: Symbol.hasInstance
  */
-function SymbolhasInstance() {
+function() {
     var passed = false;
     var obj = { foo: true };
     var C = function(){};
@@ -19,7 +21,7 @@ function SymbolhasInstance() {
 /*
  * Test: Symbol.isConcatSpreadable
  */
-function SymbolisConcatSpreadable() {
+function() {
     var a = [], b = [];
     b[Symbol.isConcatSpreadable] = false;
     a = a.concat(b);
@@ -29,7 +31,7 @@ function SymbolisConcatSpreadable() {
 /*
  * Test: Symbol.iterator
  */
-function Symboliterator() {
+function() {
     var a = 0, b = {};
     b[Symbol.iterator] = function() {
       return {
@@ -49,7 +51,7 @@ function Symboliterator() {
 /*
  * Test: Symbol.species
  */
-function Symbolspecies() {
+function() {
     return RegExp[Symbol.species] === RegExp
       && Array[Symbol.species] === Array
       && !(Symbol.species in Object);
@@ -58,7 +60,7 @@ function Symbolspecies() {
 /*
  * Test: Symbol.toPrimitive
  */
-function SymboltoPrimitive() {
+function() {
     var a = {}, b = {}, c = {};
     var passed = 0;
     a[Symbol.toPrimitive] = function(hint) { passed += hint === "number";  return 0; };
@@ -74,7 +76,7 @@ function SymboltoPrimitive() {
 /*
  * Test: Symbol.toStringTag
  */
-function SymboltoStringTag() {
+function() {
     var a = {};
     a[Symbol.toStringTag] = "foo";
     return (a + "") === "[object foo]";
@@ -83,7 +85,7 @@ function SymboltoStringTag() {
 /*
  * Test: Symbol.unscopables
  */
-function Symbolunscopables() {
+function() {
     var a = { foo: 1, bar: 2 };
     a[Symbol.unscopables] = { bar: true };
     with (a) {

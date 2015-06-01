@@ -2,10 +2,12 @@
  * Category: annex b
  * Significance: small
  * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-__proto__-property-names-in-object-initializers
- *//*
+ */
+
+/*
  * Test: basic support
  */
-function basicsupport() {
+function() {
     return { __proto__ : [] } instanceof Array
       && !({ __proto__ : null } instanceof Object);
 }
@@ -13,7 +15,7 @@ function basicsupport() {
 /*
  * Test: multiple __proto__ is an error
  */
-function multipleprotoisanerror() {
+function() {
     try {
       eval("({ __proto__ : [], __proto__: {} })");
     }
@@ -25,7 +27,7 @@ function multipleprotoisanerror() {
 /*
  * Test: not a computed property
  */
-function notacomputedproperty() {
+function() {
     if (!({ __proto__ : [] } instanceof Array)) {
       return false;
     }
@@ -36,7 +38,7 @@ function notacomputedproperty() {
 /*
  * Test: not a shorthand property
  */
-function notashorthandproperty() {
+function() {
     if (!({ __proto__ : [] } instanceof Array)) {
       return false;
     }
@@ -47,7 +49,7 @@ function notashorthandproperty() {
 /*
  * Test: not a shorthand method
  */
-function notashorthandmethod() {
+function() {
     if (!({ __proto__ : [] } instanceof Array)) {
       return false;
     }

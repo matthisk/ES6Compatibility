@@ -2,59 +2,61 @@
  * Category: built-in extensions
  * Significance: medium
  * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-properties-of-the-array-prototype-object
- *//*
+ */
+
+/*
  * Test: Array.prototype.copyWithin
  */
-function ArrayprototypecopyWithin() {
+function() {
     return typeof Array.prototype.copyWithin === 'function';
 }
 
 /*
  * Test: Array.prototype.find
  */
-function Arrayprototypefind() {
+function() {
     return typeof Array.prototype.find === 'function';
 }
 
 /*
  * Test: Array.prototype.findIndex
  */
-function ArrayprototypefindIndex() {
+function() {
     return typeof Array.prototype.findIndex === 'function';
 }
 
 /*
  * Test: Array.prototype.fill
  */
-function Arrayprototypefill() {
+function() {
     return typeof Array.prototype.fill === 'function';
 }
 
 /*
  * Test: Array.prototype.keys
  */
-function Arrayprototypekeys() {
+function() {
     return typeof Array.prototype.keys === 'function';
 }
 
 /*
  * Test: Array.prototype.values
  */
-function Arrayprototypevalues() {
+function() {
     return typeof Array.prototype.values === 'function';
 }
 
 /*
  * Test: Array.prototype.entries
  */
-function Arrayprototypeentries() {
+function() {
     return typeof Array.prototype.entries === 'function';
 }
 
 /*
  * Test: Array.prototype[Symbol.unscopables]
  */
-function Arrayprototype[Symbolunscopables]() {
+function() {
     var unscopables = Array.prototype[Symbol.unscopables];
     if (!unscopables) {
       return false;

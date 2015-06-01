@@ -2,10 +2,12 @@
  * Category: subclassing
  * Significance: small
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-regexp-constructor
- *//*
+ */
+
+/*
  * Test: basic functionality
  */
-function basicfunctionality() {
+function() {
     class R extends RegExp {}
     var r = new R("baz","g");
     return r.global && r.source === "baz";
@@ -14,7 +16,7 @@ function basicfunctionality() {
 /*
  * Test: RegExp.prototype.exec
  */
-function RegExpprototypeexec() {
+function() {
     class R extends RegExp {}
     var r = new R("baz","g");
     return r.exec("foobarbaz")[0] === "baz" && r.lastIndex === 9;
@@ -23,7 +25,7 @@ function RegExpprototypeexec() {
 /*
  * Test: RegExp.prototype.test
  */
-function RegExpprototypetest() {
+function() {
     class R extends RegExp {}
     var r = new R("baz");
     return r.test("foobarbaz");

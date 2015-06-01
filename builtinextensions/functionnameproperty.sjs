@@ -2,10 +2,12 @@
  * Category: built-in extensions
  * Significance: small
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-setfunctionname
- *//*
+ */
+
+/*
  * Test: function statements
  */
-function functionstatements() {
+function() {
     function foo(){};
     return foo.name === 'foo' &&
       (function(){}).name === '';
@@ -14,7 +16,7 @@ function functionstatements() {
 /*
  * Test: function expressions
  */
-function functionexpressions() {
+function() {
     return (function foo(){}).name === 'foo' &&
       (function(){}).name === '';
 }
@@ -22,14 +24,14 @@ function functionexpressions() {
 /*
  * Test: new Function
  */
-function newFunction() {
+function() {
     return (new Function).name === "anonymous";
 }
 
 /*
  * Test: bound functions
  */
-function boundfunctions() {
+function() {
     function foo() {};
     return foo.bind({}).name === "bound foo" &&
       (function(){}).bind({}).name === "bound ";
@@ -38,7 +40,7 @@ function boundfunctions() {
 /*
  * Test: variables (function)
  */
-function variables() {
+function() {
     var foo = function() {};
     var bar = function baz() {};
     return foo.name === "foo" && bar.name === "baz";
@@ -47,7 +49,7 @@ function variables() {
 /*
  * Test: object methods (function)
  */
-function objectmethods() {
+function() {
     var o = { foo: function(){}, bar: function baz(){}};
     o.qux = function(){};
     return o.foo.name === "foo" &&
@@ -58,7 +60,7 @@ function objectmethods() {
 /*
  * Test: accessor properties
  */
-function accessorproperties() {
+function() {
     var o = { get foo(){}, set foo(x){} };
     var descriptor = Object.getOwnPropertyDescriptor(o, "foo");
     return descriptor.get.name === "get foo" &&
@@ -68,7 +70,7 @@ function accessorproperties() {
 /*
  * Test: shorthand methods
  */
-function shorthandmethods() {
+function() {
     var o = { foo(){} };
     return o.foo.name === "foo";
 }
@@ -76,7 +78,7 @@ function shorthandmethods() {
 /*
  * Test: shorthand methods (no lexical binding)
  */
-function shorthandmethods() {
+function() {
     var f = "foo";
     return ({f() { return f; }}).f() === "foo";
 }
@@ -84,7 +86,7 @@ function shorthandmethods() {
 /*
  * Test: symbol-keyed methods
  */
-function symbolkeyedmethods() {
+function() {
     var sym1 = Symbol("foo");
     var sym2 = Symbol();
     var o = {
@@ -99,7 +101,7 @@ function symbolkeyedmethods() {
 /*
  * Test: class statements
  */
-function classstatements() {
+function() {
     class foo {};
     class bar { static name() {} };
     return foo.name === "foo" &&
@@ -109,7 +111,7 @@ function classstatements() {
 /*
  * Test: class expressions
  */
-function classexpressions() {
+function() {
     return class foo {}.name === "foo" &&
       typeof class bar { static name() {} }.name === "function";
 }
@@ -117,7 +119,7 @@ function classexpressions() {
 /*
  * Test: variables (class)
  */
-function variables() {
+function() {
     var foo = class {};
     var bar = class baz {};
     var qux = class { static name() {} };
@@ -129,7 +131,7 @@ function variables() {
 /*
  * Test: object methods (class)
  */
-function objectmethods() {
+function() {
     var o = { foo: class {}, bar: class baz {}};
     o.qux = class {};
     return o.foo.name === "foo" &&
@@ -140,7 +142,7 @@ function objectmethods() {
 /*
  * Test: class prototype methods
  */
-function classprototypemethods() {
+function() {
     class C { foo(){} };
     return (new C).foo.name === "foo";
 }
@@ -148,7 +150,7 @@ function classprototypemethods() {
 /*
  * Test: class static methods
  */
-function classstaticmethods() {
+function() {
     class C { static foo(){} };
     return C.foo.name === "foo";
 }
@@ -156,7 +158,7 @@ function classstaticmethods() {
 /*
  * Test: isn't writable, is configurable
  */
-function isntwritable,isconfigurable() {
+function() {
     var descriptor = Object.getOwnPropertyDescriptor(function f(){},"name");
     return descriptor.enumerable   === false &&
            descriptor.writable     === false &&
