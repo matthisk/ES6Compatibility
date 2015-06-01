@@ -15,5 +15,6 @@ function() {
 { function h() { return 1; } }
   function h() { return 2; }
 
-return f() === 1 && g() === 2 && h() === 1}
+return f() === 1 && g() === 2 && h() === 1;
+}
 
