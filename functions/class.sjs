@@ -178,7 +178,7 @@ function() {
     try {
       var B = class C {
         [C](){}
-      }
+      };
     } catch(e) {
       return true;
     }
@@ -198,12 +198,12 @@ function() {
 /*
  * Test: implicit strict mode
  */
-function() {
+/*function() {
     class C {
       static method() { return this === undefined; }
     }
     return (0,C.method)();
-}
+}*/
 
 /*
  * Test: constructor requires new
