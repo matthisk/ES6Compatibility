@@ -1,7 +1,7 @@
 /* Name: Number properties
  * Category: built-in extensions
  * Significance: small
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-isfinite-number
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-isfinite-number
  */
 
 /*

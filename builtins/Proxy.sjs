@@ -1,8 +1,21 @@
 /* Name: Proxy
  * Category: built-ins
  * Significance: large
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-proxy-object-internal-methods-and-internal-slots
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-proxy-object-internal-methods-and-internal-slots
  */
+
+/*
+ * Test: constructor requires new
+ */
+function() {
+    new Proxy({}, {});
+    try {
+      Proxy({}, {});
+      return false;
+    } catch(e) {
+      return true;
+    }
+}
 
 /*
  * Test: "get" handler

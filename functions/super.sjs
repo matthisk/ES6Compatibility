@@ -1,7 +1,7 @@
 /* Name: super
  * Category: functions
  * Significance: medium
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-super-keyword
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-super-keyword
  */
 
 /*
@@ -72,6 +72,21 @@ function() {
     var obj = new C();
     obj.foo = "foo";
     return obj.qux("baz") === "foobarbaz";
+}
+
+/*
+ * Test: constructor calls use correct "new.target" binding
+ */
+function() {
+    var passed;
+    class B {
+      constructor() { passed = (new.target === C); }
+    }
+    class C extends B {
+      constructor() { super(); }
+    }
+    new C();
+    return passed;
 }
 
 /*

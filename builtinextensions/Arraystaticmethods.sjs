@@ -1,7 +1,7 @@
 /* Name: Array static methods
  * Category: built-in extensions
  * Significance: medium
- * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-properties-of-the-array-constructor
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-properties-of-the-array-constructor
  */
 
 /*
@@ -12,10 +12,18 @@ function() {
 }
 
 /*
+ * Test: Array.from, generator instances
+ */
+function() {
+    var iterable = (function*(){ yield 1; yield 2; yield 3; }());
+    return Array.from(iterable) + '' === "1,2,3";
+}
+
+/*
  * Test: Array.from, generic iterables
  */
 function() {
-    var iterable = global.__createIterableObject(1, 2, 3);
+    var iterable = global.__createIterableObject([1, 2, 3]);
     return Array.from(iterable) + '' === "1,2,3";
 }
 
@@ -23,7 +31,7 @@ function() {
  * Test: Array.from, instances of generic iterables
  */
 function() {
-    var iterable = global.__createIterableObject(1, 2, 3);
+    var iterable = global.__createIterableObject([1, 2, 3]);
     return Array.from(Object.create(iterable)) + '' === "1,2,3";
 }
 
@@ -37,10 +45,20 @@ function() {
 }
 
 /*
+ * Test: Array.from map function, generator instances
+ */
+function() {
+    var iterable = (function*(){ yield "foo"; yield "bar"; yield "bal"; }());
+    return Array.from(iterable, function(e, i) {
+      return e + this.baz + i;
+    }, { baz: "d" }) + '' === "food0,bard1,bald2";
+}
+
+/*
  * Test: Array.from map function, generic iterables
  */
 function() {
-    var iterable = global.__createIterableObject("foo", "bar", "bal");
+    var iterable = global.__createIterableObject(["foo", "bar", "bal"]);
     return Array.from(iterable, function(e, i) {
       return e + this.baz + i;
     }, { baz: "d" }) + '' === "food0,bard1,bald2";
@@ -50,7 +68,7 @@ function() {
  * Test: Array.from map function, instances of iterables
  */
 function() {
-    var iterable = global.__createIterableObject("foo", "bar", "bal");
+    var iterable = global.__createIterableObject(["foo", "bar", "bal"]);
     return Array.from(Object.create(iterable), function(e, i) {
       return e + this.baz + i;
     }, { baz: "d" }) + '' === "food0,bard1,bald2";
@@ -61,8 +79,9 @@ function() {
  */
 function() {
     var closed = false;
-    var iter = __createIterableObject(1, 2, 3);
-    iter['return'] = function(){ closed = true; return {}; }
+    var iter = global.__createIterableObject([1, 2, 3], {
+      'return': function(){ closed = true; return {}; }
+    });
     try {
       Array.from(iter, function() { throw 42 });
     } catch(e){}
@@ -75,5 +94,13 @@ function() {
 function() {
     return typeof Array.of === 'function' &&
       Array.of(2)[0] === 2;
+}
+
+/*
+ * Test: Array[Symbol.species]
+ */
+function() {
+    var prop = Object.getOwnPropertyDescriptor(Array, Symbol.species);
+    return 'get' in prop && Array[Symbol.species] === Array;
 }
 

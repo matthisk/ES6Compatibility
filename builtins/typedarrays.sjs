@@ -1,7 +1,7 @@
 /* Name: typed arrays
  * Category: built-ins
  * Significance: large
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-typedarray-objects
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-objects
  */
 
 /*
@@ -163,6 +163,72 @@ function() {
     var view = new DataView(buffer);
     view.setFloat64(0, 0.1);
     return view.getFloat64(0) === 0.1;
+}
+
+/*
+ * Test: ArrayBuffer[Symbol.species]
+ */
+function() {
+    return typeof ArrayBuffer[Symbol.species] === 'function';
+}
+
+/*
+ * Test: constructors require new
+ */
+function() {
+    var buffer = new ArrayBuffer(64);
+    var constructors = [
+      'ArrayBuffer',
+      'DataView',
+      'Int8Array',
+      'Uint8Array',
+      'Uint8ClampedArray',
+      'Int16Array',
+      'Uint16Array',
+      'Int32Array',
+      'Uint32Array',
+      'Float32Array',
+      'Float64Array'
+    ];
+    for(var i = 0; i < constructors.length; i+=1) {
+      try {
+        if (constructors[i] in global) {
+          global[constructors[i]](constructors[i] === "ArrayBuffer" ? 64 : buffer);
+        }
+        return false;
+      } catch(e) {
+      }
+    }
+    return true;
+}
+
+/*
+ * Test: correct prototype chains
+ */
+function() {
+    var constructors = [
+      'Int8Array',
+      'Uint8Array',
+      'Uint8ClampedArray',
+      'Int16Array',
+      'Uint16Array',
+      'Int32Array',
+      'Uint32Array',
+      'Float32Array',
+      'Float64Array'
+    ];
+    var constructor = Object.getPrototypeOf(Int8Array);
+    var prototype = Object.getPrototypeOf(Int8Array.prototype);
+    for(var i = 0; i < constructors.length; i+=1) {
+      if (!(constructors[i] in global
+          && Object.getPrototypeOf(global[constructors[i]]) === constructor
+          && Object.getPrototypeOf(global[constructors[i]].prototype) === prototype
+          && Object.getOwnPropertyNames(global[constructors[i]].prototype).sort() + ''
+            === "BYTES_PER_ELEMENT,constructor")) {
+        return false;
+      }
+    }
+    return true;
 }
 
 /*
@@ -486,4 +552,32 @@ typeof Int32Array.prototype.entries === "function" &&
 typeof Uint32Array.prototype.entries === "function" &&
 typeof Float32Array.prototype.entries === "function" &&
 typeof Float64Array.prototype.entries === "function"}
+
+/*
+ * Test: %TypedArray%.prototype[Symbol.iterator]
+ */
+function() {
+turn typeof Int8Array.prototype[Symbol.iterator] === "function" &&
+typeof Uint8Array.prototype[Symbol.iterator] === "function" &&
+typeof Uint8ClampedArray.prototype[Symbol.iterator] === "function" &&
+typeof Int16Array.prototype[Symbol.iterator] === "function" &&
+typeof Uint16Array.prototype[Symbol.iterator] === "function" &&
+typeof Int32Array.prototype[Symbol.iterator] === "function" &&
+typeof Uint32Array.prototype[Symbol.iterator] === "function" &&
+typeof Float32Array.prototype[Symbol.iterator] === "function" &&
+typeof Float64Array.prototype[Symbol.iterator] === "function"}
+
+/*
+ * Test: %TypedArray%[Symbol.species]
+ */
+function() {
+turn typeof Int8Array[Symbol.species] === "function" &&
+typeof Uint8Array[Symbol.species] === "function" &&
+typeof Uint8ClampedArray[Symbol.species] === "function" &&
+typeof Int16Array[Symbol.species] === "function" &&
+typeof Uint16Array[Symbol.species] === "function" &&
+typeof Int32Array[Symbol.species] === "function" &&
+typeof Uint32Array[Symbol.species] === "function" &&
+typeof Float32Array[Symbol.species] === "function" &&
+typeof Float64Array[Symbol.species] === "function"}
 

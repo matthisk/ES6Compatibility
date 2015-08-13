@@ -1,7 +1,7 @@
 /* Name: miscellaneous subclassables
  * Category: subclassing
- * Significance: small
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-boolean-constructor
+ * Significance: tiny
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-boolean-constructor
  */
 
 /*

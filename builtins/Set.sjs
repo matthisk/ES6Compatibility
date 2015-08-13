@@ -1,7 +1,7 @@
 /* Name: Set
  * Category: built-ins
- * Significance: medium
- * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-set-objects
+ * Significance: small
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-set-objects
  */
 
 /*
@@ -29,12 +29,51 @@ function() {
 }
 
 /*
+ * Test: constructor requires new
+ */
+function() {
+    new Set();
+    try {
+      Set();
+      return false;
+    } catch(e) {
+      return true;
+    }
+}
+
+/*
+ * Test: constructor accepts null
+ */
+function() {
+    new Set(null);
+    return true;
+}
+
+/*
+ * Test: constructor invokes add
+ */
+function() {
+    var passed = false;
+    var _add = Set.prototype.add;
+
+    Set.prototype.add = function(v) {
+      passed = true;
+    };
+
+    new Set([1]);
+    Set.prototype.add = _add;
+
+    return passed;
+}
+
+/*
  * Test: iterator closing
  */
 function() {
     var closed = false;
-    var iter = __createIterableObject(1, 2, 3);
-    iter['return'] = function(){ closed = true; return {}; }
+    var iter = global.__createIterableObject([1, 2, 3], {
+      'return': function(){ closed = true; return {}; }
+    });
     var add = Set.prototype.add;
     Set.prototype.add = function(){ throw 0 };
     try {
@@ -119,5 +158,37 @@ function() {
  */
 function() {
     return typeof Set.prototype.entries === "function";
+}
+
+/*
+ * Test: Set.prototype[Symbol.iterator]
+ */
+function() {
+    return typeof Set.prototype[Symbol.iterator] === "function";
+}
+
+/*
+ * Test: Set iterator prototype chain
+ */
+function() {
+    // Iterator instance
+    var iterator = new Set()[Symbol.iterator]();
+    // %SetIteratorPrototype%
+    var proto1 = Object.getPrototypeOf(iterator);
+    // %IteratorPrototype%
+    var proto2 = Object.getPrototypeOf(proto1);
+
+    return proto2.hasOwnProperty(Symbol.iterator) &&
+      !proto1    .hasOwnProperty(Symbol.iterator) &&
+      !iterator  .hasOwnProperty(Symbol.iterator) &&
+      iterator[Symbol.iterator]() === iterator;
+}
+
+/*
+ * Test: Set[Symbol.species]
+ */
+function() {
+    var prop = Object.getOwnPropertyDescriptor(Set, Symbol.species);
+    return 'get' in prop && Set[Symbol.species] === Set;
 }
 

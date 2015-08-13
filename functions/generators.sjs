@@ -1,7 +1,7 @@
 /* Name: generators
  * Category: functions
  * Significance: large
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generator-function-definitions
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-generator-function-definitions
  */
 
 /*
@@ -167,6 +167,22 @@ function() {
 }
 
 /*
+ * Test: yield *, sparse arrays
+ */
+function() {
+    var iterator = (function * generator() {
+      yield * [,,];
+    }());
+    var item = iterator.next();
+    var passed = item.value === undefined && item.done === false;
+    item = iterator.next();
+    passed    &= item.value === undefined && item.done === false;
+    item = iterator.next();
+    passed    &= item.value === undefined && item.done === true;
+    return passed;
+}
+
+/*
  * Test: yield *, strings
  */
 function() {
@@ -199,11 +215,29 @@ function() {
 }
 
 /*
+ * Test: yield *, generator instances
+ */
+function() {
+    var iterator = (function * generator() {
+      yield * (function*(){ yield 5; yield 6; yield 7; }());
+    }());
+    var item = iterator.next();
+    var passed = item.value === 5 && item.done === false;
+    item = iterator.next();
+    passed    &= item.value === 6 && item.done === false;
+    item = iterator.next();
+    passed    &= item.value === 7 && item.done === false;
+    item = iterator.next();
+    passed    &= item.value === undefined && item.done === true;
+    return passed;
+}
+
+/*
  * Test: yield *, generic iterables
  */
 function() {
     var iterator = (function * generator() {
-      yield * global.__createIterableObject(5, 6, 7);
+      yield * global.__createIterableObject([5, 6, 7]);
     }());
     var item = iterator.next();
     var passed = item.value === 5 && item.done === false;
@@ -221,7 +255,7 @@ function() {
  */
 function() {
     var iterator = (function * generator() {
-      yield * Object.create(__createIterableObject(5, 6, 7));
+      yield * Object.create(__createIterableObject([5, 6, 7]));
     }());
     var item = iterator.next();
     var passed = item.value === 5 && item.done === false;
@@ -235,15 +269,35 @@ function() {
 }
 
 /*
+ * Test: yield * on non-iterables is a runtime error
+ */
+function() {
+    var iterator = (function * generator() {
+      yield * [5];
+    }());
+    var item = iterator.next();
+    var passed = item.value === 5 && item.done === false;
+    iterator = (function * generator() {
+      yield * 5;
+    }());
+    try {
+      iterator.next();
+    } catch (e) {
+      return passed;
+    }
+}
+
+/*
  * Test: yield *, iterator closing
  */
 function() {
     var closed = '';
-    var iter = __createIterableObject(1, 2, 3);
-    iter['return'] = function(){
-      closed += 'a';
-      return {done: true};
-    }
+    var iter = __createIterableObject([1, 2, 3], {
+      'return': function(){
+        closed += 'a';
+        return {done: true};
+      }
+    });
     var gen = (function* generator(){
       try {
         yield *iter;
@@ -261,12 +315,13 @@ function() {
  */
 function() {
     var closed = false;
-    var iter = __createIterableObject(1, 2, 3);
-    iter['throw'] = undefined;
-    iter['return'] = function(){
-      closed = true;
-      return {done: true};
-    }
+    var iter = global.__createIterableObject([1, 2, 3], {
+      'throw': undefined,
+      'return': function() {
+        closed = true;
+        return {done: true};
+      }
+    });
     var gen = (function*(){
       try {
         yield *iter;

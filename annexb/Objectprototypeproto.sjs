@@ -1,7 +1,7 @@
 /* Name: Object.prototype.__proto__
  * Category: annex b
- * Significance: small
- * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.prototype.__proto__
+ * Significance: tiny
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-object.prototype.__proto__
  */
 
 /*

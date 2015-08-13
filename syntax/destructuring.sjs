@@ -1,7 +1,7 @@
 /* Name: destructuring
  * Category: syntax
  * Significance: large
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-destructuring-assignment
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-destructuring-assignment
  */
 
 /*
@@ -13,6 +13,14 @@ function() {
     [d,e] = [7,8];
     return a === 5 && b === 6 && c === undefined
       && d === 7 && e === 8;
+}
+
+/*
+ * Test: with sparse arrays
+ */
+function() {
+    var [a, b] = [,,];
+    return a === undefined && b === undefined;
 }
 
 /*
@@ -36,12 +44,23 @@ function() {
 }
 
 /*
+ * Test: with generator instances
+ */
+function() {
+    var [a, b, c] = (function*(){ yield 1; yield 2; }());
+    var d, e;
+    [d, e] = (function*(){ yield 3; yield 4; }());
+    return a === 1 && b === 2 && c === undefined
+      && d === 3 && e === 4;
+}
+
+/*
  * Test: with generic iterables
  */
 function() {
-    var [a, b, c] = global.__createIterableObject(1, 2);
+    var [a, b, c] = global.__createIterableObject([1, 2]);
     var d, e;
-    [d, e] = global.__createIterableObject(3, 4);
+    [d, e] = global.__createIterableObject([3, 4]);
     return a === 1 && b === 2 && c === undefined
       && d === 3 && e === 4;
 }
@@ -50,9 +69,9 @@ function() {
  * Test: with instances of generic iterables
  */
 function() {
-    var [a, b, c] = Object.create(global.__createIterableObject(1, 2))
+    var [a, b, c] = Object.create(global.__createIterableObject([1, 2]));
     var d, e;
-    [d, e] = Object.create(global.__createIterableObject(3, 4));
+    [d, e] = Object.create(global.__createIterableObject([3, 4]));
     return a === 1 && b === 2 && c === undefined
       && d === 3 && e === 4;
 }
@@ -62,8 +81,9 @@ function() {
  */
 function() {
     var closed = false;
-    var iter = __createIterableObject(1, 2, 3);
-    iter['return'] = function(){ closed = true; return {}; }
+    var iter = global.__createIterableObject([1, 2, 3], {
+      'return': function(){ closed = true; return {}; }
+    });
     var [a, b] = iter;
     return closed;
 }
@@ -136,6 +156,20 @@ function() {
 }
 
 /*
+ * Test: parenthesised left-hand-side is a syntax error
+ */
+function() {
+    var a, b;
+    ({a,b} = {a:1,b:2});
+    try {
+      eval("({a,b}) = {a:3,b:4};");
+    }
+    catch(e) {
+      return a === 1 && b === 2;
+    }
+}
+
+/*
  * Test: chained object destructuring
  */
 function() {
@@ -197,6 +231,16 @@ function() {
 }
 
 /*
+ * Test: in parameters, 'arguments' interaction
+ */
+function() {
+    return (function({a, x:b, y:e}, [c, d]) {
+      return arguments[0].a === 1 && arguments[0].x === 2
+        && !("y" in arguments[0]) && arguments[1] + '' === "3,4";
+    }({a:1, x:2}, [3, 4]));
+}
+
+/*
  * Test: in parameters, new Function() support
  */
 function() {
@@ -251,21 +295,42 @@ function() {
 }
 
 /*
+ * Test: empty patterns
+ */
+function() {
+    [] = [1,2];
+    ({} = {a:1,b:2});
+    return true;
+}
+
+/*
+ * Test: empty patterns in parameters
+ */
+function() {
+    return function ([],{}){
+      return arguments[0] + '' === "3,4" && arguments[1].x === "foo";
+    }([3,4],{x:"foo"});
+}
+
+/*
  * Test: defaults
  */
 function() {
-    var {a = 1, b = 0, c = 3} = {b:2, c:undefined};
-    return a === 1 && b === 2 && c === 3;
+    var {a = 1, b = 0, z:c = 3} = {b:2, z:undefined};
+    var [d = 0, e = 5, f = 6] = [4,,undefined];
+    return a === 1 && b === 2 && c === 3
+      && d === 4 && e === 5 && f === 6;
 }
 
 /*
  * Test: defaults in parameters
  */
 function() {
-    return (function({a = 1, b = 0, c = 3, x:d = 0, y:e = 5, z:f}) {
+    return (function({a = 1, b = 0, c = 3, x:d = 0, y:e = 5},
+        [f = 6, g = 0, h = 8]) {
       return a === 1 && b === 2 && c === 3 && d === 4 &&
-        e === 5 && f === undefined;
-    }({b:2, c:undefined, x:4}));
+        e === 5 && f === 6 && g === 7 && h === 8;
+    }({b:2, c:undefined, x:4},[, 7, undefined]));
 }
 
 /*
@@ -300,9 +365,8 @@ function() {
  * Test: defaults in parameters, new Function() support
  */
 function() {
-    return new Function("{a = 1, b = 0, c = 3, x:d = 0, y:e = 5, z:f}",
-      "return a === 1 && b === 2 && c === 3 && d === 4 && "
-      + "e === 5 && f === undefined;"
+    return new Function("{a = 1, b = 0, c = 3, x:d = 0, y:e = 5}",
+      "return a === 1 && b === 2 && c === 3 && d === 4 && e === 5;"
     )({b:2, c:undefined, x:4});
 }
 

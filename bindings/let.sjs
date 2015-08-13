@@ -1,7 +1,7 @@
 /* Name: let
  * Category: bindings
  * Significance: medium
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-let-and-const-declarations
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-let-and-const-declarations
  */
 
 /*
@@ -35,7 +35,9 @@ function() {
  */
 function() {
     var passed = (function(){ try {  qux; } catch(e) { return true; }}());
+    function fn() { passed &= qux === 456; }
     let qux = 456;
+    fn();
     return passed;
 }
 
@@ -92,7 +94,9 @@ function() {
 function() {
     'use strict';
     var passed = (function(){ try {  qux; } catch(e) { return true; }}());
+    function fn() { passed &= qux === 456; }
     let qux = 456;
+    fn();
     return passed;
 }
 

@@ -1,7 +1,7 @@
 /* Name: Symbol
  * Category: built-ins
  * Significance: medium
- * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-symbol-constructor
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-symbol-constructor
  */
 
 /*

@@ -1,7 +1,7 @@
 /* Name: Object static methods accept primitives
  * Category: misc
- * Significance: small
- * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-properties-of-the-object-constructor
+ * Significance: tiny
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-properties-of-the-object-constructor
  */
 
 /*

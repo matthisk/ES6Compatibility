@@ -1,7 +1,7 @@
 /* Name: proper tail calls (tail call optimisation)
  * Category: optimisation
  * Significance: medium
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-tail-position-calls
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-tail-position-calls
  */
 
 /*

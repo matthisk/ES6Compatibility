@@ -1,7 +1,7 @@
 /* Name: class
  * Category: functions
  * Significance: large
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-class-definitions
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-class-definitions
  */
 
 /*
@@ -225,8 +225,7 @@ function() {
     class B {}
     class C extends B {}
     return new C() instanceof B
-      && B.isPrototypeOf(C)
-      && B.prototype.isPrototypeOf(C.prototype);
+      && B.isPrototypeOf(C);
 }
 
 /*
@@ -236,8 +235,7 @@ function() {
     var B;
     class C extends (B = class {}) {}
     return new C() instanceof B
-      && B.isPrototypeOf(C)
-      && B.prototype.isPrototypeOf(C.prototype);
+      && B.isPrototypeOf(C);
 }
 
 /*
@@ -247,9 +245,7 @@ function() {
     class C extends null {
       constructor() { return Object.create(null); }
     }
-    var c = new C();
-    return !(c instanceof Object)
-      && Function.prototype.isPrototypeOf(C)
+    return Function.prototype.isPrototypeOf(C)
       && Object.getPrototypeOf(C.prototype) === null;
 }
 
@@ -258,16 +254,17 @@ function() {
  */
 function() {
     var passed = false;
+    new function f() {
+      passed = new.target === f;
+    }();
+
     class A {
       constructor() {
-        passed = new.target === B;
+        passed &= new.target === B;
       }
     }
     class B extends A {}
     new B();
-    (function() {
-      passed &= new.target === undefined;
-    }());
     return passed;
 }
 

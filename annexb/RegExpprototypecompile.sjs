@@ -1,7 +1,7 @@
 /* Name: RegExp.prototype.compile
  * Category: annex b
- * Significance: small
- * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-regexp.prototype.compile
+ * Significance: tiny
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-regexp.prototype.compile
  */
 
 /*

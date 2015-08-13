@@ -1,7 +1,7 @@
 /* Name: WeakMap
  * Category: built-ins
- * Significance: medium
- * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-weakmap-objects
+ * Significance: small
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-weakmap-objects
  */
 
 /*
@@ -29,12 +29,61 @@ function() {
 }
 
 /*
+ * Test: constructor requires new
+ */
+function() {
+    new WeakMap();
+    try {
+      WeakMap();
+      return false;
+    } catch(e) {
+      return true;
+    }
+}
+
+/*
+ * Test: constructor accepts null
+ */
+function() {
+    new WeakMap(null);
+    return true;
+}
+
+/*
+ * Test: constructor invokes set
+ */
+function() {
+    var passed = false;
+    var _set = WeakMap.prototype.set;
+
+    WeakMap.prototype.set = function(k, v) {
+      passed = true;
+    };
+
+    new WeakMap([ [{ }, 42] ]);
+    WeakMap.prototype.set = _set;
+
+    return passed;
+}
+
+/*
+ * Test: frozen objects as keys
+ */
+function() {
+    var f = Object.freeze({});
+    var m = new WeakMap;
+    m.set(f, 42);
+    return m.get(f) === 42;
+}
+
+/*
  * Test: iterator closing
  */
 function() {
     var closed = false;
-    var iter = __createIterableObject(1, 2, 3);
-    iter['return'] = function(){ closed = true; return {}; }
+    var iter = global.__createIterableObject([1, 2, 3], {
+      'return': function(){ closed = true; return {}; }
+    });
     try {
       new WeakMap(iter);
     } catch(e){}
@@ -58,12 +107,16 @@ function() {
 }
 
 /*
- * Test: Support frozen objects as keys
+ * Test: no WeakMap.prototype.clear method
  */
 function() {
-    var f = Object.freeze({});
-    var m = new WeakMap;
-    m.set(f, 42);
-    return m.get(f) === 42;
+    if (!("clear" in WeakMap.prototype)) {
+      return true;
+    }
+    var m = new WeakMap();
+    var key = {};
+    m.set(key, 2);
+    m.clear();
+    return m.has(key);
 }
 
