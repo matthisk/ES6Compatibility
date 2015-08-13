@@ -1,7 +1,7 @@
 /* Name: __proto__ in object literals
  * Category: annex b
- * Significance: small
- * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-__proto__-property-names-in-object-initializers
+ * Significance: tiny
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-__proto__-property-names-in-object-initializers
  */
 
 /*

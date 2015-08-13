@@ -1,7 +1,7 @@
 /* Name: Unicode code point escapes
  * Category: syntax
  * Significance: small
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-literals-string-literals
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-literals-string-literals
  */
 
 /*

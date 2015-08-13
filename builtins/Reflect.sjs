@@ -1,7 +1,7 @@
 /* Name: Reflect
  * Category: built-ins
- * Significance: medium
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-reflection
+ * Significance: small
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-reflection
  */
 
 /*
@@ -127,7 +127,7 @@ function() {
     Object.defineProperty(obj, '4', { value: true, enumerable: true });
     delete obj[2];
     obj[2] = true;
-    
+
     return Reflect.ownKeys(obj).join('') === "012349 DB-1AC";
 }
 
@@ -147,7 +147,7 @@ function() {
     Object.defineProperty(obj, 'C', { value: true, enumerable: true });
     Object.defineProperty(obj, sym3,{ value: true, enumerable: true });
     Object.defineProperty(obj, 'D', { value: true, enumerable: true });
-    
+
     var result = Reflect.ownKeys(obj);
     var l = result.length;
     return result[l-3] === sym1 && result[l-2] === sym2 && result[l-1] === sym3;

@@ -1,7 +1,7 @@
 /* Name: String static methods
  * Category: built-in extensions
  * Significance: medium
- * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-properties-of-the-string-constructor
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-properties-of-the-string-constructor
  */
 
 /*

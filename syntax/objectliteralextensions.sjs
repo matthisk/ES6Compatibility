@@ -1,7 +1,7 @@
 /* Name: object literal extensions
  * Category: syntax
  * Significance: large
- * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object-initialiser
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-object-initialiser
  */
 
 /*

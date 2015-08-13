@@ -1,7 +1,7 @@
 /* Name: RegExp.prototype properties
  * Category: built-in extensions
  * Significance: small
- * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-regexp.prototype
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-regexp.prototype
  */
 
 /*
@@ -37,5 +37,13 @@ function() {
  */
 function() {
     return typeof RegExp.prototype[Symbol.search] === 'function';
+}
+
+/*
+ * Test: RegExp[Symbol.species]
+ */
+function() {
+    var prop = Object.getOwnPropertyDescriptor(RegExp, Symbol.species);
+    return 'get' in prop && RegExp[Symbol.species] === RegExp;
 }
 

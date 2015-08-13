@@ -1,7 +1,7 @@
 /* Name: octal and binary literals
  * Category: syntax
  * Significance: small
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-literals-numeric-literals
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-literals-numeric-literals
  */
 
 /*

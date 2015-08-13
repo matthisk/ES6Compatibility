@@ -1,7 +1,7 @@
 /* Name: Array.prototype methods
  * Category: built-in extensions
  * Significance: medium
- * Link: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-properties-of-the-array-prototype-object
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-properties-of-the-array-prototype-object
  */
 
 /*
@@ -51,6 +51,30 @@ function() {
  */
 function() {
     return typeof Array.prototype.entries === 'function';
+}
+
+/*
+ * Test: Array.prototype[Symbol.iterator]
+ */
+function() {
+    return typeof Array.prototype[Symbol.iterator] === 'function';
+}
+
+/*
+ * Test: Array iterator prototype chain
+ */
+function() {
+    // Iterator instance
+    var iterator = [][Symbol.iterator]();
+    // %ArrayIteratorPrototype%
+    var proto1 = Object.getPrototypeOf(iterator);
+    // %IteratorPrototype%
+    var proto2 = Object.getPrototypeOf(proto1);
+
+    return proto2.hasOwnProperty(Symbol.iterator) &&
+      !proto1    .hasOwnProperty(Symbol.iterator) &&
+      !iterator  .hasOwnProperty(Symbol.iterator) &&
+      iterator[Symbol.iterator]() === iterator;
 }
 
 /*

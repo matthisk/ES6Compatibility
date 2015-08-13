@@ -1,7 +1,7 @@
 /* Name: Function is subclassable
  * Category: subclassing
- * Significance: small
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-function-constructor
+ * Significance: tiny
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-function-constructor
  */
 
 /*
@@ -11,6 +11,15 @@ function() {
     class C extends Function {}
     var c = new C("return 'foo';");
     return c() === 'foo';
+}
+
+/*
+ * Test: correct prototype chain
+ */
+function() {
+    class C extends Function {}
+    var c = new C("return 'foo';");
+    return c instanceof C && c instanceof Function && Object.getPrototypeOf(C) === Function;
 }
 
 /*

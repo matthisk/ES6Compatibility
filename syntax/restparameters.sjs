@@ -1,7 +1,7 @@
 /* Name: rest parameters
  * Category: syntax
  * Significance: medium
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-function-definitions
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-function-definitions
  */
 
 

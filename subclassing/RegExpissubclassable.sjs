@@ -1,7 +1,7 @@
 /* Name: RegExp is subclassable
  * Category: subclassing
- * Significance: small
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-regexp-constructor
+ * Significance: tiny
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-regexp-constructor
  */
 
 /*
@@ -11,6 +11,15 @@ function() {
     class R extends RegExp {}
     var r = new R("baz","g");
     return r.global && r.source === "baz";
+}
+
+/*
+ * Test: correct prototype chain
+ */
+function() {
+    class R extends RegExp {}
+    var r = new R("baz","g");
+    return r instanceof R && r instanceof RegExp && Object.getPrototypeOf(R) === RegExp;
 }
 
 /*

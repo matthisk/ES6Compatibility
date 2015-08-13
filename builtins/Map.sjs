@@ -1,7 +1,7 @@
 /* Name: Map
  * Category: built-ins
- * Significance: medium
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-map-objects
+ * Significance: small
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-map-objects
  */
 
 /*
@@ -29,12 +29,51 @@ function() {
 }
 
 /*
+ * Test: constructor requires new
+ */
+function() {
+    new Map();
+    try {
+      Map();
+      return false;
+    } catch(e) {
+      return true;
+    }
+}
+
+/*
+ * Test: constructor accepts null
+ */
+function() {
+    new Map(null);
+    return true;
+}
+
+/*
+ * Test: constructor invokes set
+ */
+function() {
+    var passed = false;
+    var _set = Map.prototype.set;
+
+    Map.prototype.set = function(k, v) {
+      passed = true;
+    };
+
+    new Map([ [1, 2] ]);
+    Map.prototype.set = _set;
+
+    return passed;
+}
+
+/*
  * Test: iterator closing
  */
 function() {
     var closed = false;
-    var iter = __createIterableObject(1, 2, 3);
-    iter['return'] = function(){ closed = true; return {}; }
+    var iter = global.__createIterableObject([1, 2, 3], {
+      'return': function(){ closed = true; return {}; }
+    });
     try {
       new Map(iter);
     } catch(e){}
@@ -114,5 +153,37 @@ function() {
  */
 function() {
     return typeof Map.prototype.entries === "function";
+}
+
+/*
+ * Test: Map.prototype[Symbol.iterator]
+ */
+function() {
+    return typeof Map.prototype[Symbol.iterator] === "function";
+}
+
+/*
+ * Test: Map iterator prototype chain
+ */
+function() {
+    // Iterator instance
+    var iterator = new Map()[Symbol.iterator]();
+    // %MapIteratorPrototype%
+    var proto1 = Object.getPrototypeOf(iterator);
+    // %IteratorPrototype%
+    var proto2 = Object.getPrototypeOf(proto1);
+
+    return proto2.hasOwnProperty(Symbol.iterator) &&
+      !proto1    .hasOwnProperty(Symbol.iterator) &&
+      !iterator  .hasOwnProperty(Symbol.iterator) &&
+      iterator[Symbol.iterator]() === iterator;
+}
+
+/*
+ * Test: Map[Symbol.species]
+ */
+function() {
+    var prop = Object.getOwnPropertyDescriptor(Map, Symbol.species);
+    return 'get' in prop && Map[Symbol.species] === Map;
 }
 

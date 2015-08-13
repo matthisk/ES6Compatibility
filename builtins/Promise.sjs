@@ -1,7 +1,7 @@
 /* Name: Promise
  * Category: built-ins
  * Significance: large
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-promise-objects
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-promise-objects
  */
 
 /*
@@ -33,6 +33,19 @@ function() {
 }
 
 /*
+ * Test: constructor requires new
+ */
+function() {
+    new Promise(function(){});
+    try {
+      Promise(function(){});
+      return false;
+    } catch(e) {
+      return true;
+    }
+}
+
+/*
  * Test: Promise.all
  */
 function() {
@@ -44,6 +57,27 @@ function() {
       new Promise(function(_, reject) { setTimeout(reject, 200,"baz"); }),
       new Promise(function(_, reject) { setTimeout(reject, 100,"qux"); }),
     ]);
+    var score = 0;
+    fulfills.then(function(result) { score += (result + "" === "foo,bar"); check(); });
+    rejects.catch(function(result) { score += (result === "qux"); check(); });
+
+    function check() {
+      if (score === 2) asyncTestPassed();
+    }
+}
+
+/*
+ * Test: Promise.all, generic iterables
+ */
+function() {
+    var fulfills = Promise.all(global.__createIterableObject([
+      new Promise(function(resolve)   { setTimeout(resolve,200,"foo"); }),
+      new Promise(function(resolve)   { setTimeout(resolve,100,"bar"); }),
+    ]));
+    var rejects = Promise.all(global.__createIterableObject([
+      new Promise(function(_, reject) { setTimeout(reject, 200,"baz"); }),
+      new Promise(function(_, reject) { setTimeout(reject, 100,"qux"); }),
+    ]));
     var score = 0;
     fulfills.then(function(result) { score += (result + "" === "foo,bar"); check(); });
     rejects.catch(function(result) { score += (result === "qux"); check(); });
@@ -72,5 +106,34 @@ function() {
     function check() {
       if (score === 2) asyncTestPassed();
     }
+}
+
+/*
+ * Test: Promise.race, generic iterables
+ */
+function() {
+    var fulfills = Promise.race(global.__createIterableObject([
+      new Promise(function(resolve)   { setTimeout(resolve,200,"foo"); }),
+      new Promise(function(_, reject) { setTimeout(reject, 300,"bar"); }),
+    ]));
+    var rejects = Promise.race(global.__createIterableObject([
+      new Promise(function(_, reject) { setTimeout(reject, 200,"baz"); }),
+      new Promise(function(resolve)   { setTimeout(resolve,300,"qux"); }),
+    ]));
+    var score = 0;
+    fulfills.then(function(result) { score += (result === "foo"); check(); });
+    rejects.catch(function(result) { score += (result === "baz"); check(); });
+
+    function check() {
+      if (score === 2) asyncTestPassed();
+    }
+}
+
+/*
+ * Test: Promise[Symbol.species]
+ */
+function() {
+    var prop = Object.getOwnPropertyDescriptor(Promise, Symbol.species);
+    return 'get' in prop && Promise[Symbol.species] === Promise;
 }
 

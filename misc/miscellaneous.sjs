@@ -1,7 +1,7 @@
 /* Name: miscellaneous
  * Category: misc
  * Significance: small
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-additions-and-changes-that-introduce-incompatibilities-with-prior-editions
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-additions-and-changes-that-introduce-incompatibilities-with-prior-editions
  */
 
 /*
@@ -73,20 +73,26 @@ function() {
  */
 function() {
     try {
-      Boolean.prototype.valueOf(); return false;
-    } catch(e) {}
-    try {
-      Number.prototype.valueOf(); return false;
-    } catch(e) {}
-    try {
-      String.prototype.toString(); return false;
-    } catch(e) {}
-    try {
       RegExp.prototype.source; return false;
     } catch(e) {}
     try {
       Date.prototype.valueOf(); return false;
     } catch(e) {}
     return true;
+}
+
+/*
+ * Test: function 'length' is configurable
+ */
+function() {
+    var fn = function(a, b) {};
+
+    var desc = Object.getOwnPropertyDescriptor(fn, "length");
+    if (desc.configurable) {
+      Object.defineProperty(fn, "length", { value: 1 });
+      return fn.length === 1;
+    }
+
+    return false;
 }
 

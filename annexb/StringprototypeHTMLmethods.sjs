@@ -1,7 +1,7 @@
 /* Name: String.prototype HTML methods
  * Category: annex b
- * Significance: small
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.anchor
+ * Significance: tiny
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-string.prototype.anchor
  */
 
 /*

@@ -1,7 +1,7 @@
 /* Name: arrow functions
  * Category: functions
  * Significance: large
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-arrow-function-definitions
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-arrow-function-definitions
  */
 
 /*
@@ -68,6 +68,15 @@ function() {
 function() {
     return (() => {
       try { Function("x\n => 2")(); } catch(e) { return true; }
+    })();
+}
+
+/*
+ * Test: correct precedence
+ */
+function() {
+    return (() => {
+      try { Function("0 || () => 2")(); } catch(e) { return true; }
     })();
 }
 

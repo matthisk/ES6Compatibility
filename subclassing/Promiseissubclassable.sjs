@@ -1,7 +1,7 @@
 /* Name: Promise is subclassable
  * Category: subclassing
  * Significance: small
- * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-function-constructor
+ * Link: http://www.ecma-international.org/ecma-262/6.0/#sec-function-constructor
  */
 
 /*
@@ -31,6 +31,15 @@ function() {
     function check() {
       if (score === 5) asyncTestPassed();
     }
+}
+
+/*
+ * Test: correct prototype chain
+ */
+function() {
+    class C extends Promise {}
+    var c = new C(function(resolve, reject) { resolve("foo"); });
+    return c instanceof C && c instanceof Promise && Object.getPrototypeOf(C) === Promise;
 }
 
 /*
