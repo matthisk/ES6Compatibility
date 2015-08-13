@@ -49,12 +49,3 @@ function() {
     }());
 }
 
-/*
- * Test: new Function() support
- */
-function() {
-    return new Function("a", "...b",
-      "return b instanceof Array && a+b === 'foobar,baz';"
-    )('foo','bar','baz');
-}
-

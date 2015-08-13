@@ -22,18 +22,6 @@ function() {
 }
 
 /*
- * Test: redefining a const is an error
- */
-function() {
-    const baz = 1;
-    try {
-      Function("const foo = 1; foo = 2;")();
-    } catch(e) {
-      return true;
-    }
-}
-
-/*
  * Test: temporal dead zone
  */
 function() {

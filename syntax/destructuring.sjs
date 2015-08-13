@@ -18,10 +18,10 @@
 /*
  * Test: with sparse arrays
  */
-function() {
+/*function() {
     var [a, b] = [,,];
     return a === undefined && b === undefined;
-}
+}*/
 
 /*
  * Test: with strings
@@ -46,13 +46,13 @@ function() {
 /*
  * Test: with generator instances
  */
-function() {
+/*function() {
     var [a, b, c] = (function*(){ yield 1; yield 2; }());
     var d, e;
     [d, e] = (function*(){ yield 3; yield 4; }());
     return a === 1 && b === 2 && c === undefined
       && d === 3 && e === 4;
-}
+}*/
 
 /*
  * Test: with generic iterables
@@ -156,20 +156,6 @@ function() {
 }
 
 /*
- * Test: parenthesised left-hand-side is a syntax error
- */
-function() {
-    var a, b;
-    ({a,b} = {a:1,b:2});
-    try {
-      eval("({a,b}) = {a:3,b:4};");
-    }
-    catch(e) {
-      return a === 1 && b === 2;
-    }
-}
-
-/*
  * Test: chained object destructuring
  */
 function() {
@@ -241,16 +227,6 @@ function() {
 }
 
 /*
- * Test: in parameters, new Function() support
- */
-function() {
-    return new Function("{a, x:b, y:e}","[c, d]",
-      "return a === 1 && b === 2 && c === 3 && "
-      + "d === 4 && e === undefined;"
-    )({a:1, x:2}, [3, 4]);
-}
-
-/*
  * Test: in parameters, function 'length' property
  */
 function() {
@@ -315,39 +291,23 @@ function() {
 /*
  * Test: defaults
  */
-function() {
+/*function() {
     var {a = 1, b = 0, z:c = 3} = {b:2, z:undefined};
     var [d = 0, e = 5, f = 6] = [4,,undefined];
     return a === 1 && b === 2 && c === 3
       && d === 4 && e === 5 && f === 6;
-}
+}*/
 
 /*
  * Test: defaults in parameters
  */
-function() {
+/*function() {
     return (function({a = 1, b = 0, c = 3, x:d = 0, y:e = 5},
         [f = 6, g = 0, h = 8]) {
       return a === 1 && b === 2 && c === 3 && d === 4 &&
         e === 5 && f === 6 && g === 7 && h === 8;
     }({b:2, c:undefined, x:4},[, 7, undefined]));
-}
-
-/*
- * Test: defaults, let temporal dead zone
- */
-function() {
-    var {a, b = 2} = {a:1};
-    try {
-      eval("let {c = c} = {};");
-      return false;
-    } catch(e){}
-    try {
-      eval("let {c = d, d} = {d:1};");
-      return false;
-    } catch(e){}
-    return a === 1 && b === 2;
-}
+}*/
 
 /*
  * Test: defaults in parameters, separate scope
@@ -360,13 +320,3 @@ function() {
       return a();
     }({}));
 }
-
-/*
- * Test: defaults in parameters, new Function() support
- */
-function() {
-    return new Function("{a = 1, b = 0, c = 3, x:d = 0, y:e = 5}",
-      "return a === 1 && b === 2 && c === 3 && d === 4 && e === 5;"
-    )({b:2, c:undefined, x:4});
-}
-

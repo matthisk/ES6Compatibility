@@ -16,13 +16,13 @@ function() {
 /*
  * Test: with sparse arrays
  */
-function() {
+/*function() {
     var arr = [,,];
     var count = 0;
     for (var item of arr)
       count += (item === undefined);
     return count === 2;
-}
+}*/
 
 /*
  * Test: with strings
@@ -47,21 +47,21 @@ function() {
 /*
  * Test: with generator instances
  */
-function() {
+/*function() {
     var result = "";
     var iterable = (function*(){ yield 1; yield 2; yield 3; }());
     for (var item of iterable) {
       result += item;
     }
     return result === "123";
-}
+}*/
 
 /*
  * Test: with generic iterables
  */
 function() {
     var result = "";
-    var iterable = __createIterableObject(1, 2, 3);
+    var iterable = __createIterableObject([1, 2, 3]);
     for (var item of iterable) {
       result += item;
     }
@@ -73,7 +73,7 @@ function() {
  */
 function() {
     var result = "";
-    var iterable = __createIterableObject(1, 2, 3);
+    var iterable = __createIterableObject([1, 2, 3]);
     for (var item of Object.create(iterable)) {
       result += item;
     }

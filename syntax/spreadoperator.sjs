@@ -21,18 +21,18 @@ function() {
 /*
  * Test: with sparse arrays, in function calls
  */
-function() {
+/*function() {
     var a = Array(...[,,]);
     return "0" in a && "1" in a && '' + a[0] + a[1] === "undefinedundefined";
-}
+}*/
 
 /*
  * Test: with sparse arrays, in array literals
  */
-function() {
+/*function() {
     var a = [...[,,]];
     return "0" in a && "1" in a && '' + a[0] + a[1] === "undefinedundefined";
-}
+}*/
 
 /*
  * Test: with strings, in function calls
@@ -65,18 +65,18 @@ function() {
 /*
  * Test: with generator instances, in calls
  */
-function() {
+/*function() {
     var iterable = (function*(){ yield 1; yield 2; yield 3; }());
     return Math.max(...iterable) === 3;
-}
+}*/
 
 /*
  * Test: with generator instances, in arrays
  */
-function() {
+/*function() {
     var iterable = (function*(){ yield "b"; yield "c"; yield "d"; }());
     return ["a", ...iterable, "e"][3] === "d";
-}
+}*/
 
 /*
  * Test: with generic iterables, in calls
