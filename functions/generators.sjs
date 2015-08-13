@@ -115,7 +115,7 @@ function() {
     };
     var iterator = generator();
     iterator.next();
-    iterator.throw("foo");
+    iterator.throww("foo");
     return passed;
 }
 
@@ -129,7 +129,7 @@ function() {
     var iterator = generator();
     var item = iterator.next();
     var passed = item.value === 5 && item.done === false;
-    item = iterator.return("quxquux");
+    item = iterator.returnn("quxquux");
     passed    &= item.value === "quxquux" && item.done === true;
     item = iterator.next();
     passed    &= item.value === undefined && item.done === true;
@@ -243,7 +243,7 @@ function() {
     iter['return'] = function(){
       closed += 'a';
       return {done: true};
-    }
+    };
     var gen = (function* generator(){
       try {
         yield *iter;
@@ -266,7 +266,7 @@ function() {
     iter['return'] = function(){
       closed = true;
       return {done: true};
-    }
+    };
     var gen = (function*(){
       try {
         yield *iter;

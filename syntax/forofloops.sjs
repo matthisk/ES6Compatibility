@@ -38,7 +38,7 @@ function() {
  */
 function() {
     var result = "";
-    var iterable = global.__createIterableObject(1, 2, 3);
+    var iterable = __createIterableObject(1, 2, 3);
     for (var item of iterable) {
       result += item;
     }
@@ -50,7 +50,7 @@ function() {
  */
 function() {
     var result = "";
-    var iterable = global.__createIterableObject(1, 2, 3);
+    var iterable = __createIterableObject(1, 2, 3);
     for (var item of Object.create(iterable)) {
       result += item;
     }
@@ -63,7 +63,7 @@ function() {
 function() {
     var closed = false;
     var iter = __createIterableObject(1, 2, 3);
-    iter['return'] = function(){ closed = true; return {}; }
+    iter['return'] = function(){ closed = true; return {}; };
     for (var it of iter) break;
     return closed;
 }
@@ -74,7 +74,7 @@ function() {
 function() {
     var closed = false;
     var iter = __createIterableObject(1, 2, 3);
-    iter['return'] = function(){ closed = true; return {}; }
+    iter['return'] = function(){ closed = true; return {}; };
     try {
       for (var it of iter) throw 0;
     } catch(e){}

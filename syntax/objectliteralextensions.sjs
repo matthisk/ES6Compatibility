@@ -39,7 +39,7 @@ function() {
  */
 function() {
     var x = 'y';
-    return ({ [x](){ return 1 } }).y() === 1;
+    return ({ [x](){ return 1; } }).y() === 1;
 }
 
 /*
@@ -49,8 +49,8 @@ function() {
     var x = 'y',
         valueSet,
         obj = {
-          get [x] () { return 1 },
-          set [x] (value) { valueSet = value }
+          get [x] () { return 1; },
+          set [x] (value) { valueSet = value; }
         };
     obj.y = 'foo';
     return obj.y === 1 && valueSet === 'foo';

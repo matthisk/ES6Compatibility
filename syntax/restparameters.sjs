@@ -4,6 +4,7 @@
  * Link: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-function-definitions
  */
 
+
 /*
  * Test: basic functionality
  */

@@ -7,13 +7,13 @@
 /*
  * Test: with arrays
  */
-function() {
+/*function() {
     var [a, , [b], c] = [5, null, [6]];
     var d, e;
     [d,e] = [7,8];
     return a === 5 && b === 6 && c === undefined
       && d === 7 && e === 8;
-}
+}*/
 
 /*
  * Test: with strings
@@ -50,7 +50,7 @@ function() {
  * Test: with instances of generic iterables
  */
 function() {
-    var [a, b, c] = Object.create(global.__createIterableObject(1, 2))
+    var [a, b, c] = Object.create(global.__createIterableObject(1, 2));
     var d, e;
     [d, e] = Object.create(global.__createIterableObject(3, 4));
     return a === 1 && b === 2 && c === undefined
@@ -63,7 +63,7 @@ function() {
 function() {
     var closed = false;
     var iter = __createIterableObject(1, 2, 3);
-    iter['return'] = function(){ closed = true; return {}; }
+    iter['return'] = function(){ closed = true; return {}; };
     var [a, b] = iter;
     return closed;
 }
